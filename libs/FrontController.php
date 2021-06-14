@@ -23,10 +23,10 @@ class FrontController {
         else
             die('Controller not found  - 404 not found');
 
-        if (is_callable(array($controllerName, $actionName)) == false) {
-            trigger_error($controllerName . '->' . $actionName . ' do not exist', E_USER_NOTICE);
-            return FALSE;
-        }
+        // if (is_callable(array($controllerName, $actionName)) == false) {
+        //     trigger_error($controllerName . '->' . $actionName . ' do not exist', E_USER_NOTICE);
+        //     return FALSE;
+        // }
 
         $controller = new $controllerName();
         $controller->$actionName();

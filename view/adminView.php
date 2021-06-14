@@ -13,23 +13,13 @@
 
 <body>
     <main class="container-fluid vh-100 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-warning form__log-in"  method="post" action="?controller=Admin&action=adminLogin">
+        <form class="container bg-warning form__log-in"  method="post" action="controller=Admin&action=adminLogIn">
             <div class="container">
                 <h1 class="mt-3 text-center">Log in</h1>
             </div>
             <div class="container container--one">
                 <label class="mb-2">User name</label>
-                <input class="form-control" type="text" name="userName" placeholder="Enter user name" required>
-            </div>
-            <div class="container container--two">
-                <label class="mb-2">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
-            </div>
-            <div class="container container--three">
-                <a>Sign in</a>
-            </div>
-            <div class="container d-flex justify-content-center container--four">
-                <button type="submit" class="btn btn-primary">Log in</button>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter user name">
             </div>
         </form>
     </main>
