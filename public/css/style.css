@@ -1,7 +1,70 @@
-.selector-for-some-widget {
-    box-sizing: content-box;
+@media (max-width: 575.98px) {
+  .form__log-in {
+    width: 85%;
+    height: fit-content;
+  }
+
+  .container--one {
+    margin: 1em 0em;
+  }
+
+  .container--two{
+      margin-bottom: .2em;
+  }
+
+  .container--three{
+      margin-top: .2em;
+  }
+
+  .container--four{
+      margin-bottom: 1.5em;
+      margin-top: 1em;
+  }
 }
 
-.alert{
-    background-color: black;
+@media (min-width: 575.98px) and (max-width: 991.98px) {
+  .form__log-in {
+    width: 50%;
+    height: fit-content;
+  }
+  .container--one {
+    margin: 1em 0em;
+  }
+
+  .container--two{
+      margin-bottom: .2em;
+  }
+
+  .container--three{
+      margin-top: .2em;
+  }
+
+  .container--four{
+      margin-bottom: 1.5em;
+      margin-top: 1em;
+  }
+}
+
+@media (min-width: 991.98px) {
+  .form__log-in {
+    max-width: 35em;
+    height: fit-content;
+  }
+
+  .container--one {
+    margin: 1em 0em;
+  }
+
+  .container--two{
+      margin-bottom: .2em;
+  }
+
+  .container--three{
+      margin-top: .2em;
+  }
+
+  .container--four{
+      margin-bottom: 1.5em;
+      margin-top: 1em;
+  }
 }
