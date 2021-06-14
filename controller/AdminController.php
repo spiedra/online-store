@@ -5,7 +5,7 @@
         }
 
         public function adminLogin(){
-           echo $_POST['userName']." ".$_POST['password'];
+           
         }
     
         public function showAdminView() {
