@@ -29,7 +29,7 @@ class SessionController
                 break;
 
             case 1:
-                $this->view->show("adminView.php", null);
+                $this->view->show("adminMainView.php", null);
                 break;
 
             case 2:

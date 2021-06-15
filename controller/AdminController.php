@@ -18,7 +18,7 @@ class AdminController
 
             if (ConnectorApi::useHttpPostApi($dataArray) == 1) {
                 echo '<script>alert("Successfully registered)</script>';
-                $this->showAdminView();
+                $this->showAdminRegisterView();
             }else{
                 echo '<script>alert("Admin is alredy registered")</script>';
                 $this->showAdminRegisterView();
@@ -29,18 +29,8 @@ class AdminController
         }
     }
 
-    public function showProductRegisterView()
-    {
-        $this->view->show("productRegisterView.php", null);
-    }
-
     public function showAdminRegisterView()
     {
         $this->view->show("adminRegisterView.php", null);
-    }
-
-    public function showAdminView()
-    {
-        $this->view->show("adminView.php", null);
     }
 }

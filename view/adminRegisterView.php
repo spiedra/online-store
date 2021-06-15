@@ -15,8 +15,8 @@
     <?php
     include_once 'headerView.php';
     ?>
-       <main class="container-fluid h-75 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-light form__register-admin"  method="POST" action="?controller=Admin&action=registerAdmin">
+    <main class="container-fluid h-75 d-flex align-items-center justify-content-center page-main">
+        <form class="container bg-light form__register-admin" method="POST" action="?controller=Admin&action=registerAdmin">
             <div class="container">
                 <h1 class="mt-3 text-center form__tittle">Register Admin</h1>
             </div>
@@ -39,6 +39,6 @@
     </main>
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
-<footer>
-
-</footer>
+<?php
+    require_once 'footerView.php';
+?>

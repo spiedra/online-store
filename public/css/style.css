@@ -28,6 +28,10 @@ body{
  min-height: 30em;
 }
 
+.page-main-adminMainView{
+  height: 100%;
+}
+
 /* RESPONSIVE */
 @media (max-width: 575.98px) {
   .form__log-in, .form__register-admin {

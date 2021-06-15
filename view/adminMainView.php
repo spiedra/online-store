@@ -11,15 +11,15 @@
     <title>Online store</title>
 </head>
 
-<body class="bg-light vh-100">
+<body class="bg-light vh-100 d-flex align-items-center justify-content-between flex-column">
     <?php
     include_once 'headerView.php';
     ?>
-    <main class="container page-main">
-
+    <main class="page-main-adminMainView">
+        <h1>Administration module </h1>
     </main>
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
-<footer>
-
-</footer>
+<?php
+    require_once 'footerView.php';
+?>
