@@ -12,4 +12,3 @@
             $this->view->show("adminView.php", null);
         }
     }
-?>

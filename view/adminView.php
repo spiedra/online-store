@@ -13,16 +13,7 @@
 
 <body>
     <main class="container-fluid vh-100 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-warning form__log-in"  method="post" action="controller=Admin&action=adminLogIn">
-            <div class="container">
-                <h1 class="mt-3 text-center">Log in</h1>
-            </div>
-            <div class="container container--one">
-                <label class="mb-2">User name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter user name">
-            </div>
-        </form>
+       
     </main>
-    </div>
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>

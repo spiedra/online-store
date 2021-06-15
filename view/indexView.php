@@ -13,7 +13,7 @@
 
 <body>
     <main class="container-fluid vh-100 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-warning form__log-in"  method="post" action="?controller=Admin&action=adminLogin">
+        <form class="container bg-warning form__log-in"  method="POST" action="?controller=Session&action=manageSession">
             <div class="container">
                 <h1 class="mt-3 text-center">Log in</h1>
             </div>
