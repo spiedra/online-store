@@ -4,8 +4,8 @@
             $this->view = new View();
         }
 
-        public function adminLogin(){
-           
+        public function showProductRegisterView(){
+            $this->view->show("productRegisterView.php", null);
         }
     
         public function showAdminView() {

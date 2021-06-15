@@ -5,6 +5,8 @@ class SessionController
     public function __construct()
     {
         $this->view = new View();
+        header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire'); // works
         session_start();
     }
 
@@ -21,7 +23,8 @@ class SessionController
     {  
         switch ($role) {
             case -1:
-                
+                echo '<script>alert("User not found")</script>';
+                $this->view->show("indexView.php", null);
                 break;
 
             case 1:
