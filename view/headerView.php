@@ -14,7 +14,7 @@
                             <a href="?controller=Admin&action=showAdminRegisterView" class="nav-link text-dark">Create admin</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-dark">Register products</a>
+                            <a href="?controller=Product&action=showProductRegisterView" class="nav-link text-dark">Register products</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link text-dark">Create promotions</a>

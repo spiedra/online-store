@@ -1,43 +1,54 @@
 /* GENERAL CONFIGURATION */
-body{
+body {
   background-color: #f0f2f5;
 }
 
-.navbar-brand > img{
+.navbar-brand > img {
   width: 55px;
 }
 
-.nav-link{
-  border-radius: .5em;
+.nav-link {
+  border-radius: 0.5em;
 }
 
-.nav-link:hover{
+.nav-link:hover {
   background-color: rgba(204, 204, 204, 0.959);
 }
 
-.form__register-admin{
+/* FORM */
+
+.form__register-admin,
+.form__register-product {
   background-color: hsla(0, 0%, 95%, 0.065);
   box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.5);
 }
 
-.form__tittle{
+.form__tittle {
   font-size: 1.5em;
 }
 
-.page-main{
- min-height: 30em;
+/* PAGE-MAIN */
+
+.page-main {
+  min-height: 30em;
 }
 
-.page-main-adminMainView{
+.page-main-adminMainView {
   height: 100%;
+}
+
+.form-group{
+  margin: 1em .2em;
 }
 
 /* RESPONSIVE */
 @media (max-width: 575.98px) {
-  .form__log-in, .form__register-admin {
+  .form__log-in,
+  .form__register-admin,
+  .form__register-product {
     width: 85%;
     height: fit-content;
-    border-radius: .8em;
+    border-radius: 0.8em;
   }
 
   .container--one {
@@ -60,13 +71,15 @@ body{
 }
 
 @media (min-width: 575.98px) and (max-width: 991.98px) {
-  .form__log-in, .form__register-admin {
+  .form__log-in,
+  .form__register-admin,
+  .form__register-product {
     width: 50%;
     height: fit-content;
-    border-radius: .8em;
+    border-radius: 0.8em;
   }
 
-  .form__register-admin{
+  .form__register-admin {
     width: 75%;
   }
   .container--one {
@@ -94,14 +107,21 @@ body{
 }
 
 @media (min-width: 991.98px) {
-  .form__log-in, .form__register-admin {
+  .form__log-in,
+  .form__register-admin,
+  .form__register-product {
     max-width: 35em;
     height: fit-content;
-    border-radius: .8em;
+    border-radius: 0.8em;
   }
 
   .form__register-admin{
     max-width: 45em;
+  }
+
+  .form__register-product{
+    max-width: 75%;
+    padding: 2em;
   }
 
   .container--one {

@@ -15,25 +15,29 @@
     <?php
     include_once 'headerView.php';
     ?>
-    <main class="container-fluid h-75 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-light form__register-admin">
-            <div class="container">
-                <h1 class="mt-3 text-center form__tittle">Register Admin</h1>
+    <main class="container-fluid d-flex align-items-center justify-content-center page-main">
+        <form class="container my-4 bg-light form__register-product" method="POST" action="">
+            <div class="form-group">
+                <h1 class="mt-3 text-center form__tittle">Register Product</h1>
             </div>
-            <div class="container container--one">
-                <label class="mb-2">User name</label>
-                <input class="form-control" type="text" name="userNameAdmin" placeholder="Enter user name" required>
+            <div class="form-group">
+                <label class="mb-2" for="inputNameProduct">Name</label>
+                <input type="text" class="form-control" id="inputNameProduct" placeholder="Product name">
             </div>
-            <div class="container container--two">
-                <label class="mb-2">Password</label>
-                <input type="password" class="form-control" name="passwordAdmin" placeholder="Password" required>
+            <div class="form-group">
+                <label class="mb-2" for="inputPriceProduct">Price</label>
+                <input type="number" min="0.00" max="any" step="0.01" class="form-control" id="inputPriceProduct" placeholder="Price $">
             </div>
-            <div class="container container--three-sign-in">
-                <label class="mb-2">Confirm password</label>
-                <input type="password" class="form-control" name="passwordConfirmedAdmin" placeholder="Password" required>
+            <div class="form-group">
+                <label class="mb-2" for="inputDescriptionProduct">Description</label>
+                <textarea type="text" class="form-control" id="inputDescriptionProduct"></textarea>
             </div>
-            <div class="container d-flex justify-content-center container--four">
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <div class="form-group ">
+                <label class="mb-2 d-block" for="inputImageFile">Image</label>
+                <input type="file" class="form-control-file" id="inputImageFile">
+            </div>
+            <div class="container mb-0 d-flex justify-content-center container--four">
+                <button type="submit" class="btn btn-primary">Log in</button>
             </div>
         </form>
     </main>
