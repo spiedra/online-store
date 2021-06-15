@@ -9,6 +9,7 @@ class ProductController
 
     public function registerProduct()
     {
+        
     }
 
     public function showProductRegisterView()

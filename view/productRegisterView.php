@@ -22,19 +22,26 @@
             </div>
             <div class="form-group">
                 <label class="mb-2" for="inputNameProduct">Name</label>
-                <input type="text" class="form-control" id="inputNameProduct" placeholder="Product name">
+                <input type="text" class="form-control" id="inputNameProduct" name="nameProduct" placeholder="Product name">
             </div>
             <div class="form-group">
                 <label class="mb-2" for="inputPriceProduct">Price</label>
-                <input type="number" min="0.00" max="any" step="0.01" class="form-control" id="inputPriceProduct" placeholder="Price $">
+                <input type="number" min="0.00" max="any" step="0.01" class="form-control" id="inputPriceProduct" name="priceProduct" placeholder="Price $">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputCategories">Categories</label>
+                <select id="inputCategories" class="form-control" name="categorySelected">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                </select>
             </div>
             <div class="form-group">
                 <label class="mb-2" for="inputDescriptionProduct">Description</label>
-                <textarea type="text" class="form-control" id="inputDescriptionProduct"></textarea>
+                <textarea type="text" class="form-control" id="inputDescriptionProduct" name="descriptionProduct"></textarea>
             </div>
             <div class="form-group">
                 <label class="mb-2 d-block" for="inputImageFile">Image</label>
-                <input type="file" class="form-control-file" id="inputImageFile">
+                <input type="file" class="form-control-file" id="inputImageFile" name="imageFile">
             </div>
             <div class="form-group d-flex justify-content-center container--four-product">
                 <button type="submit" class="btn btn-primary">Submit</button>

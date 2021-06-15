@@ -1,19 +1,5 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (isset($_GET['id'])) {
-        // require 'libs/configuration.php';
-        // require 'model/ProductosModel.php';
-
-        // $producto=new ProductosModel();
-        // $data=$producto->buscarProducto($_GET['id']);
-        // header("HTTP/1.1 200 OK");
-        // echo json_encode($data);
-        // exit();
-    } else {
-    }
-} // GET
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['userNameAdmin'], $_POST['passwordAdmin'], $_POST['passwordConfirmedAdmin'])) {
         require 'libs/configuration.php';
@@ -47,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo json_encode(-1);
         }
         exit();
+    }else if(isset($_POST['userNameAdmin'], $_POST['passwordAdmin'], $_POST['passwordConfirmedAdmin'])){
+
     }
 } // POST
 

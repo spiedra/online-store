@@ -15,6 +15,22 @@ body {
   background-color: rgba(204, 204, 204, 0.959);
 }
 
+.btn-dropdow:hover {
+  background-color: rgba(204, 204, 204, 0.959);
+  border-color: transparent;
+}
+
+.btn-dropdow:focus {
+  background-color: rgba(204, 204, 204, 0.959);
+  border-color: transparent;
+}
+
+.btn-dropdow{
+  background-color: transparent;
+  border-color: transparent;
+  margin: 0em .5em;
+}
+
 /* FORM */
 
 .form__register-admin,
