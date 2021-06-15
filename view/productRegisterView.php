@@ -16,7 +16,7 @@
     include_once 'headerView.php';
     ?>
     <main class="container-fluid d-flex align-items-center justify-content-center page-main">
-        <form class="container my-5 bg-light form__register-product" method="POST" action="">
+        <form class="container my-5 bg-light form__register-product" method="POST" action="?controller=Product&action=registerProduct">
             <div class="form-group">
                 <h1 class="mt-3 text-center form__tittle">Register Product</h1>
             </div>
