@@ -4,9 +4,10 @@ class SessionController
 {
     public function __construct()
     {
+        require_once 'Utility/ConnectorApi.php';
         $this->view = new View();
-        header('Cache-Control: no cache'); //no cache
-session_cache_limiter('private_no_expire'); // works
+        header('Cache-Control: no cache');
+        session_cache_limiter('private_no_expire'); 
         session_start();
     }
 
@@ -16,11 +17,11 @@ session_cache_limiter('private_no_expire'); // works
             'userName' => $_POST['userName'],
             'password' => $_POST['password']
         );
-        $this->showViewByRole($this->useHttpPostApi($dataArray));
+        $this->showViewByRole(ConnectorApi::useHttpPostApi($dataArray));
     }
 
     public function showViewByRole($role)
-    {  
+    {
         switch ($role) {
             case -1:
                 echo '<script>alert("User not found")</script>';
@@ -35,19 +36,5 @@ session_cache_limiter('private_no_expire'); // works
                 $this->view->show("indexView.php", null);
                 break;
         }
-    }
-
-    public function useHttpPostApi($dataArray)
-    {
-        $url = "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/apiRest.php";
-        $data = http_build_query($dataArray);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, TRUE);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $resp = curl_exec($ch);
-        curl_close($ch);
-        return json_decode($resp, true);
     }
 }

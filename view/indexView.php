@@ -33,6 +33,8 @@
             </div>
         </form>
     </main>
-    </div>
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
+<footer>
+    
+</footer>

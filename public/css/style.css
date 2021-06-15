@@ -1,9 +1,10 @@
-.navbar-brand > img{
-  width: 55px;
+/* GENERAL CONFIGURATION */
+body{
+  background-color: #f0f2f5;
 }
 
-a{
-  color: inherit;
+.navbar-brand > img{
+  width: 55px;
 }
 
 .nav-link{
@@ -14,10 +15,25 @@ a{
   background-color: rgba(204, 204, 204, 0.959);
 }
 
+.form__register-admin{
+  background-color: hsla(0, 0%, 95%, 0.065);
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.5);
+}
+
+.form__tittle{
+  font-size: 1.5em;
+}
+
+.page-main{
+ min-height: 30em;
+}
+
+/* RESPONSIVE */
 @media (max-width: 575.98px) {
-  .form__log-in {
+  .form__log-in, .form__register-admin {
     width: 85%;
     height: fit-content;
+    border-radius: .8em;
   }
 
   .container--one {
@@ -40,9 +56,14 @@ a{
 }
 
 @media (min-width: 575.98px) and (max-width: 991.98px) {
-  .form__log-in {
+  .form__log-in, .form__register-admin {
     width: 50%;
     height: fit-content;
+    border-radius: .8em;
+  }
+
+  .form__register-admin{
+    width: 75%;
   }
   .container--one {
     margin: 1em 0em;
@@ -69,9 +90,14 @@ a{
 }
 
 @media (min-width: 991.98px) {
-  .form__log-in {
+  .form__log-in, .form__register-admin {
     max-width: 35em;
     height: fit-content;
+    border-radius: .8em;
+  }
+
+  .form__register-admin{
+    max-width: 45em;
   }
 
   .container--one {
