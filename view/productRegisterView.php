@@ -16,7 +16,7 @@
     include_once 'headerView.php';
     ?>
     <main class="container-fluid d-flex align-items-center justify-content-center page-main">
-        <form class="container my-4 bg-light form__register-product" method="POST" action="">
+        <form class="container my-5 bg-light form__register-product" method="POST" action="">
             <div class="form-group">
                 <h1 class="mt-3 text-center form__tittle">Register Product</h1>
             </div>
@@ -32,12 +32,12 @@
                 <label class="mb-2" for="inputDescriptionProduct">Description</label>
                 <textarea type="text" class="form-control" id="inputDescriptionProduct"></textarea>
             </div>
-            <div class="form-group ">
+            <div class="form-group">
                 <label class="mb-2 d-block" for="inputImageFile">Image</label>
                 <input type="file" class="form-control-file" id="inputImageFile">
             </div>
-            <div class="container mb-0 d-flex justify-content-center container--four">
-                <button type="submit" class="btn btn-primary">Log in</button>
+            <div class="form-group d-flex justify-content-center container--four-product">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
     </main>

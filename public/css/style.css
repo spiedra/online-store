@@ -44,11 +44,14 @@ body {
 /* RESPONSIVE */
 @media (max-width: 575.98px) {
   .form__log-in,
-  .form__register-admin,
-  .form__register-product {
+  .form__register-admin,.form__register-product {
     width: 85%;
     height: fit-content;
     border-radius: 0.8em;
+  }
+
+  .form__register-product{
+    width: 95%;
   }
 
   .container--one {
@@ -79,9 +82,10 @@ body {
     border-radius: 0.8em;
   }
 
-  .form__register-admin {
+  .form__register-admin, .form__register-product {
     width: 75%;
   }
+
   .container--one {
     margin: 1em 0em;
   }
@@ -120,7 +124,7 @@ body {
   }
 
   .form__register-product{
-    max-width: 75%;
+    max-width: 56em;
     padding: 2em;
   }
 
@@ -140,5 +144,9 @@ body {
   .container--three-sign-in {
     margin-bottom: 1.5em;
     margin-top: 1em;
+  }
+
+  .container--four-product{
+    margin: 0;
   }
 }
