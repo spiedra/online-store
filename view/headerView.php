@@ -1,9 +1,6 @@
 <header class="container-fluid page-header">
     <div class="row">
         <nav class="navbar navbar-expand-md navbar-light bg-warning">
-            <div class="container"> <a href="#" class="navbar-brand">
-                <img src="public/assets/shopping-bag.svg" alt="icon">
-            </a></div>
             <div class="container justify-content-end">
                 <div class="dropdown d-none d-md-flex d-lg-flex">
                     <button class="btn btn-secondary dropdown-toggle btn-dropdow text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,7 +21,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         <li class="nav-item">
-                            <a href="?controller=Product&action=showProductRegisterView" class="dropdown-item text-dark">Create category</a>
+                            <a href="?controller=Category&action=showCategoryRegisterView" class="dropdown-item text-dark">Create category</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="dropdown-item text-dark">Create promotions</a>
@@ -43,7 +40,7 @@
                             <a href="?controller=Product&action=showProductRegisterView" class="nav-link text-dark">Register products</a>
                         </li>
                         <li class="nav-item d-flex d-md-none d-lg-none">
-                            <a href="?controller=Product&action=showProductRegisterView" class="nav-link text-dark">Create category</a>
+                            <a href="?controller=Category&action=showCategoryRegisterView" class="nav-link text-dark">Create category</a>
                         </li>
                         <li class="nav-item d-flex d-md-none d-lg-none">
                             <a href="#" class="nav-link text-dark">Create promotions</a>

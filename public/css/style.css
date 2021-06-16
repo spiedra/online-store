@@ -25,10 +25,10 @@ body {
   border-color: transparent;
 }
 
-.btn-dropdow{
+.btn-dropdow {
   background-color: transparent;
   border-color: transparent;
-  margin: 0em .5em;
+  margin: 0em 0.5em;
 }
 
 /* FORM */
@@ -49,24 +49,25 @@ body {
   min-height: 30em;
 }
 
-.page-main-adminMainView {
+.page-main--adminMainView {
   height: 100%;
 }
 
-.form-group{
-  margin: 1em .2em;
+.form-group {
+  margin: 1em 0.2em;
 }
 
 /* RESPONSIVE */
 @media (max-width: 575.98px) {
   .form__log-in,
-  .form__register-admin,.form__register-product {
+  .form__register-admin,
+  .form__register-product {
     width: 85%;
     height: fit-content;
     border-radius: 0.8em;
   }
 
-  .form__register-product{
+  .form__register-product {
     width: 95%;
   }
 
@@ -98,7 +99,8 @@ body {
     border-radius: 0.8em;
   }
 
-  .form__register-admin, .form__register-product {
+  .form__register-admin,
+  .form__register-product {
     width: 75%;
   }
 
@@ -135,11 +137,11 @@ body {
     border-radius: 0.8em;
   }
 
-  .form__register-admin{
+  .form__register-admin {
     max-width: 45em;
   }
 
-  .form__register-product{
+  .form__register-product {
     max-width: 56em;
     padding: 2em;
   }
@@ -162,7 +164,7 @@ body {
     margin-top: 1em;
   }
 
-  .container--four-product{
+  .container--four-product {
     margin: 0;
   }
 }

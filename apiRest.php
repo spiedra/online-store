@@ -63,6 +63,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo json_encode($response);
         }
         exit();
+    } else if (isset($_POST['categoryType'])) {
+        require 'libs/configuration.php';
+        require 'model/CategoryModel.php';
+
+        $categoryModel = new CategoryModel();
+        $response = $categoryModel->registerCategory($_POST['categoryType']);
+        if ($response == 1) {
+            http_response_code(200);
+            echo json_encode($response);
+        } else {
+            http_response_code(406);
+            echo json_encode($response);
+        }
     }
 }
 
