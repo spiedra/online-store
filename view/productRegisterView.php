@@ -16,32 +16,38 @@
     include_once 'headerView.php';
     ?>
     <main class="container-fluid d-flex align-items-center justify-content-center page-main">
-        <form class="container my-5 bg-light form__register-product" method="POST" action="?controller=Product&action=registerProduct">
+        <form class="container my-5 bg-light form__register-product" method="POST" enctype="multipart/form-data" action="?controller=Product&action=registerProduct">
             <div class="form-group">
                 <h1 class="mt-3 text-center form__tittle">Register Product</h1>
             </div>
             <div class="form-group">
                 <label class="mb-2" for="inputNameProduct">Name</label>
-                <input type="text" class="form-control" id="inputNameProduct" name="nameProduct" placeholder="Product name">
+                <input type="text" class="form-control" id="inputNameProduct" name="nameProduct" placeholder="Product name" required>
             </div>
             <div class="form-group">
                 <label class="mb-2" for="inputPriceProduct">Price</label>
-                <input type="number" min="0.00" max="any" step="0.01" class="form-control" id="inputPriceProduct" name="priceProduct" placeholder="Price $">
+                <input type="number" min="0.00" max="any" step="0.01" class="form-control" id="inputPriceProduct" name="priceProduct" placeholder="Price $" required>
             </div>
             <div class="form-group col-md-4">
-                <label for="inputCategories">Categories</label>
+                <label class="mb-2" for="inputCategories">Categories</label>
                 <select id="inputCategories" class="form-control" name="categorySelected">
-                    <option selected>Choose...</option>
-                    <option>...</option>
+                    <option value="" disabled selected>Choose option</option>
+                    <?php
+                    foreach ($vars as $item) {
+                    ?>
+                        <option class="select_opcion" value="<?php echo $item['TYPE'] ?>"><?php echo $item['TYPE'] ?></option>
+                    <?php
+                    }
+                    ?>
                 </select>
             </div>
             <div class="form-group">
                 <label class="mb-2" for="inputDescriptionProduct">Description</label>
-                <textarea type="text" class="form-control" id="inputDescriptionProduct" name="descriptionProduct"></textarea>
+                <textarea type="text" class="form-control" id="inputDescriptionProduct" name="descriptionProduct" required></textarea>
             </div>
             <div class="form-group">
                 <label class="mb-2 d-block" for="inputImageFile">Image</label>
-                <input type="file" class="form-control-file" id="inputImageFile" name="imageFile">
+                <input type="file" class="form-control-file" id="inputImageFile" name="imageFile" required>
             </div>
             <div class="form-group d-flex justify-content-center container--four-product">
                 <button type="submit" class="btn btn-primary">Submit</button>

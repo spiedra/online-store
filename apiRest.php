@@ -1,5 +1,16 @@
 <?php
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    require 'libs/configuration.php';
+    require 'model/CategoryModel.php';
+
+    $categoryModel = new CategoryModel();
+    $response = $categoryModel->getAllCategories();
+    http_response_code(200);
+    echo json_encode($response, true);
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['userNameAdmin'], $_POST['passwordAdmin'], $_POST['passwordConfirmedAdmin'])) {
         require 'libs/configuration.php';
@@ -33,34 +44,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo json_encode(-1);
         }
         exit();
-    } else if (isset(
-        $_POST['nameProduct'],
-        $_POST['priceProduct'],
-        $_POST['descriptionProduct'],
-        $_POST['imageFile'],
-        $_POST['categorySelected']
-    ))
-    require 'libs/configuration.php';
-    require 'model/ProductModel.php';
-    $productMododel = new ProductModel();
-    $response = $productMododel->registerProduct(
-        $_POST['nameProduct'],
-        $_POST['priceProduct'],
-        $_POST['descriptionProduct'],
-        $_POST['imageFile'],
-        $_POST['categorySelected']
-
-    );
-    if ($response == 1) {
-        http_response_code(200);
-        echo json_encode($response);
-    } else {
-        http_response_code(406);
-        echo json_encode($response);
+    } else if (isset($_POST['nameProduct'], $_POST['priceProduct'], $_POST['descriptionProduct'], $_POST['categorySelected'], $_POST['imageFile'])) {
+        require 'libs/configuration.php';
+        require 'model/ProductModel.php';
+        $productMododel = new ProductModel();
+        $response = $productMododel->registerProduct(
+            $_POST['nameProduct'],
+            $_POST['priceProduct'],
+            $_POST['descriptionProduct'],
+            $_POST['categorySelected'],
+            $_POST['imageFile']
+        );
+        if ($response == 1) {
+            http_response_code(200);
+            echo json_encode($response);
+        } else {
+            http_response_code(406);
+            echo json_encode($response);
+        }
+        exit();
     }
-    exit(); {
-    }
-} 
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 } // PUT

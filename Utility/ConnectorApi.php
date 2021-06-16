@@ -15,4 +15,15 @@ class ConnectorApi
         curl_close($ch);
         return json_decode($resp, true);
     }
+
+    public static function useHttpGetApi()
+    {
+        $resp = json_decode(
+            file_get_contents(
+                "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/apiRest.php"
+            ),
+            TRUE
+        );
+      return $resp;
+    }
 }
