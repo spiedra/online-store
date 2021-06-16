@@ -11,10 +11,10 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li class="nav-item">
-                            <a href="?controller=Admin&action=showAdminRegisterView" class="nav-link text-dark">Register admin</a>
+                            <a href="?controller=Admin&action=showAdminRegisterView" class="dropdown-item text-dark">Register admin</a>
                         </li>
                         <li class="nav-item">
-                            <a href="?controller=Product&action=showProductRegisterView" class="nav-link text-dark">Register products</a>
+                            <a href="?controller=Product&action=showProductRegisterView" class="dropdown-item text-dark">Register products</a>
                         </li>
                     </ul>
                 </div>
@@ -24,10 +24,10 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         <li class="nav-item">
-                            <a href="?controller=Product&action=showProductRegisterView" class="nav-link text-dark">Create category</a>
+                            <a href="?controller=Product&action=showProductRegisterView" class="dropdown-item text-dark">Create category</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-dark">Create promotions</a>
+                            <a href="#" class="dropdown-item text-dark">Create promotions</a>
                         </li>
                     </ul>
                 </div>

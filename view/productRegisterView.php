@@ -30,7 +30,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label class="mb-2" for="inputCategories">Categories</label>
-                <select id="inputCategories" class="form-control" name="categorySelected">
+                <select id="inputCategories" class="form-select" name="categorySelected">
                     <option value="" disabled selected>Choose option</option>
                     <?php
                     foreach ($vars as $item) {
@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label class="mb-2 d-block" for="inputImageFile">Image</label>
-                <input type="file" class="form-control-file" id="inputImageFile" name="imageFile" required>
+                <input type="file" class="form-control" id="inputImageFile" name="imageFile" required>
             </div>
             <div class="form-group d-flex justify-content-center container--four-product">
                 <button type="submit" class="btn btn-primary">Submit</button>
