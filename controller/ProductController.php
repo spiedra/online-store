@@ -37,6 +37,11 @@ class ProductController
         return false;
     }
 
+    public function getAllProducts()
+    {
+        
+    }
+
     public function getAllCategories()
     {
         return $this->categoryController->getAllCategories();

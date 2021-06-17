@@ -17,6 +17,11 @@ class ProductModel
         ));
     }
 
+    public function getAllProducts()
+    {
+        return ConnectorApi::useHttpGetApi();
+    }
+
     public function saveImageProduct()
     {
         $folderPath = "public/assets/";

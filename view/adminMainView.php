@@ -15,7 +15,7 @@
     <?php
     include_once 'headerView.php';
     ?>
-    <main class="page-main--adminMainView">
+    <main class="page-main--adminMainView d-flex align-items-center justify-content-center">
         <h1>Administration module </h1>
     </main>
     <script src="public/js/bootstrap.bundle.min.js"></script>

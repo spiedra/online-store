@@ -8,6 +8,8 @@
     <meta name="keywords" content="store, covid, online, clean" />
     <link rel="stylesheet" href="public/css/bootstrap.min.css" />
     <link rel="stylesheet" href="public/css/style.css" />
+    <!-- <script type="text/javascript" src="public/js/jquery.js"></script>
+    <script src="public/js/modalPromotion.js"></script> -->
     <title>Online store</title>
 </head>
 
@@ -36,11 +38,21 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Bootstrap 4 CDN and Starter Template</td>
+                                <td class="two">Cristina</td>
+                                <td>2.846</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary my-1 btn-modal__create" data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
+                                    <button type="button" class="btn btn-success btn-modal__history" data-bs-toggle="modal" data-bs-target="#success">History</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td class="two">Bootstrap 4 CDN and Starter Template</td>
                                 <td>Cristina</td>
                                 <td>2.846</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary my-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success">History</button>
+                                    <button type="button" class="btn btn-primary my-1 btn-modal__create" data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
+                                    <button type="button" class="btn btn-success btn-modal__history" data-bs-toggle="modal" data-bs-target="#success">History</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -52,7 +64,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <h5 class="modal-title"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -78,7 +90,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <h5 class="modal_tittle"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -101,7 +113,7 @@
             </div>
         </div>
     </main>
-        <script src="public/js/bootstrap.bundle.min.js"></script>
+    <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
 <?php
 require_once 'footerView.php';

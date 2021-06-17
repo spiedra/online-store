@@ -241,7 +241,7 @@ END;
 ---------------------------------------------------------
 
 DELIMITER $$
-CREATE PROCEDURE b97452_proyecto2_if4101.sp_SHOW_HISTORY_PROMOTIONS(
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_HISTORY_PROMOTIONS(
 IN param_PRODUCT_ID INT
 )
 BEGIN
@@ -258,5 +258,24 @@ BEGIN
 				JOIN b97452_proyecto2_if4101.tb_promotion PRM
 					ON PRM.ID = PP.ID_PROMOTION
 	 WHERE P.ID = param_PRODUCT_ID;
+END;
+
+--------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_ALL_PRODUCTS()
+BEGIN
+	SELECT  
+		 PR.ID
+		,PR.NAME
+        ,PR.PRICE
+        ,PR.DESCRIPTION
+        ,CT.TYPE
+        ,PR.ID_IMAGE
+	FROM b97452_proyecto2_if4101.tb_products PR
+		JOIN b97452_proyecto2_if4101.tb_category CT
+			ON PR.ID_CATEGORY = CT.ID
+			JOIN b97452_proyecto2_if4101.tb_image IM
+				ON PR.ID_IMAGE = IM.IMAGE_NAME;
 END;
 
