@@ -4,18 +4,17 @@ class CategoryController
     public function __construct()
     {
         require_once 'Utility/ConnectorApi.php';
+        require_once 'model/CategoryModel.php';
         $this->view = new View();
+        $this->categoryModel = new CategoryModel();
     }
 
-    public function registerCategory(){
-        $dataArray = array(
-            'categoryType' => $_POST['categoryType'],
-        );
-
-        if (ConnectorApi::useHttpPostApi($dataArray) == 1) {
+    public function registerCategory()
+    {
+        if ($this->categoryModel->registerCategory() == 1) {
             echo '<script>alert("Successfully registered)</script>';
             $this->showCategoryRegisterView();
-        }else{
+        } else {
             echo '<script>alert("Category is alredy registered")</script>';
             $this->showCategoryRegisterView();
         }
@@ -23,10 +22,11 @@ class CategoryController
 
     public function getAllCategories()
     {
-        return ConnectorApi::useHttpGetApi();
+        return $this->categoryModel->getAllCategories();
     }
 
-    public function showCategoryRegisterView(){
+    public function showCategoryRegisterView()
+    {
         $this->view->show("categoryRegisterView.php", null);
     }
 }

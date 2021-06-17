@@ -1,26 +1,30 @@
 <?php
 
-class ProductModel {
-
-    protected $database;
-
-    public function __construct() {
-        require_once 'libs/SPDO.php';
-        $this->database = SPDO::singleton();
+class ProductModel
+{
+    public function __construct()
+    {
     }
 
-    public function registerProduct($name, $price, $description, $category, $image) {
-        $query = $this->database->prepare("call sp_REGISTER_PRODUCT(:param_NAME, :param_PRICE, :param_DESCRIPTION, :param_CATEGORY, :param_IMAGE, @out_RETURN)");
-        $query->bindParam(':param_NAME', $name); 
-        $query->bindParam(':param_PRICE', $price); 
-        $query->bindParam(':param_DESCRIPTION', $description); 
-        $query->bindParam(':param_CATEGORY', $category); 
-        $query->bindParam(':param_IMAGE', $image); 
-        $query->execute();
-        $result = $this->database->query("select @out_RETURN")->fetch(PDO::FETCH_ASSOC);
-        $query->closeCursor();
-        return $result['@out_RETURN'];
+    public function registerProduct()
+    {
+        return ConnectorApi::useHttpPostApi(array(
+            'nameProduct' => $_POST['nameProduct'],
+            'priceProduct' => $_POST['priceProduct'],
+            'descriptionProduct' => $_POST['descriptionProduct'],
+            'categorySelected' => $_POST['categorySelected'],
+            'imageFile' =>  $_FILES['imageFile']['name']
+        ));
+    }
+
+    public function saveImageProduct()
+    {
+        $folderPath = "public/assets/";
+        if (file_exists($folderPath) || @mkdir($folderPath)) {
+            if (@move_uploaded_file($_FILES["imageFile"]["tmp_name"], $folderPath . $_FILES["imageFile"]["name"])) {
+                return true;
+            }
+        }
+        return false;
     }
 }
-
-?>

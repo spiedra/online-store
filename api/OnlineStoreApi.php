@@ -2,7 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     require 'libs/configuration.php';
-    require 'model/CategoryModel.php';
+    require 'models/CategoryModel.php';
 
     $categoryModel = new CategoryModel();
     $response = $categoryModel->getAllCategories();
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['userNameAdmin'], $_POST['passwordAdmin'], $_POST['passwordConfirmedAdmin'])) {
         require 'libs/configuration.php';
-        require 'model/AdminModel.php';
+        require 'models/AdminModel.php';
 
         $adminModel = new AdminModel();
         $response = $adminModel->registerAdmin($_POST['userNameAdmin'], $_POST['passwordAdmin']);
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     } else if (isset($_POST['userName'], $_POST['password'])) {
         require 'libs/configuration.php';
-        require 'model/SessionModel.php';
+        require 'models/SessionModel.php';
 
         $sessionModel = new SessionModel();
         $response = $sessionModel->validateSession($_POST['userName'], $_POST['password']);
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     } else if (isset($_POST['nameProduct'], $_POST['priceProduct'], $_POST['descriptionProduct'], $_POST['categorySelected'], $_POST['imageFile'])) {
         require 'libs/configuration.php';
-        require 'model/ProductModel.php';
+        require 'models/ProductModel.php';
         $productMododel = new ProductModel();
         $response = $productMododel->registerProduct(
             $_POST['nameProduct'],

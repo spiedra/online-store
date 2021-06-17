@@ -24,7 +24,7 @@
                             <a href="?controller=Category&action=showCategoryRegisterView" class="dropdown-item text-dark">Create category</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="dropdown-item text-dark">Create promotions</a>
+                            <a href="?controller=Promotion&action=showPromotionView" class="dropdown-item text-dark">Create promotions</a>
                         </li>
                     </ul>
                 </div>
@@ -43,7 +43,7 @@
                             <a href="?controller=Category&action=showCategoryRegisterView" class="nav-link text-dark">Create category</a>
                         </li>
                         <li class="nav-item d-flex d-md-none d-lg-none">
-                            <a href="#" class="nav-link text-dark">Create promotions</a>
+                            <a href="?controller=Promotion&action=showPromotionView" class="nav-link text-dark">Create promotions</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link text-dark">Report</a>

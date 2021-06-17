@@ -10,5 +10,3 @@ class IndexController {
         $this->view->show("indexView.php", null);
     }
 }
-
-?>

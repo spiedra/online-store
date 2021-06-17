@@ -5,23 +5,17 @@ class ProductController
     {
         require_once 'Utility/ConnectorApi.php';
         require 'CategoryController.php';
+        require_once 'model/ProductModel.php';
         $this->view = new View();
         $this->categoryController = new CategoryController();
+        $this->productModel = new ProductModel();
     }
 
     public function registerProduct()
     {
         if ($this->validateFormatImage($_FILES['imageFile']['type'])) {
-
-            if ($this->saveImageProduct()) {
-                $dataArray = array(
-                    'nameProduct' => $_POST['nameProduct'],
-                    'priceProduct' => $_POST['priceProduct'],
-                    'descriptionProduct' => $_POST['descriptionProduct'],
-                    'categorySelected' => $_POST['categorySelected'],
-                    'imageFile' =>  $_FILES['imageFile']['name']
-                );
-                if (ConnectorApi::useHttpPostApi($dataArray) == 1) {
+            if ($this->productModel->saveImageProduct()) {
+                if ($this->productModel->registerProduct() == 1) {
                     echo '<script>alert("Successfully registered)</script>';
                     $this->showProductRegisterView();
                 } else {
@@ -36,17 +30,6 @@ class ProductController
         }
     }
 
-    private function saveImageProduct()
-    {
-        $folderPath = "public/assets/";
-        if (file_exists($folderPath) || @mkdir($folderPath)) {
-            if (@move_uploaded_file($_FILES["imageFile"]["tmp_name"], $folderPath . $_FILES["imageFile"]["name"])) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private function validateFormatImage($imageName)
     {
         if ($imageName == "image/jpeg" ||  $imageName == "image/pjpeg" ||  $imageName == "image/png")
@@ -54,9 +37,9 @@ class ProductController
         return false;
     }
 
-    private function getAllCategories()
+    public function getAllCategories()
     {
-        return  $this->categoryController->getAllCategories();
+        return $this->categoryController->getAllCategories();
     }
 
     public function showProductRegisterView()

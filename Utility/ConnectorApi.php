@@ -4,7 +4,7 @@ class ConnectorApi
 {
     public static function useHttpPostApi($dataArray)
     {
-        $url = "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/apiRest.php";
+        $url = "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/api/onlineStoreApi.php";
         $data = http_build_query($dataArray);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -20,7 +20,7 @@ class ConnectorApi
     {
         $resp = json_decode(
             file_get_contents(
-                "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/apiRest.php"
+                "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/api/onlineStoreApi.php"
             ),
             TRUE
         );
