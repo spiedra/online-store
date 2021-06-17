@@ -1,6 +1,5 @@
 <header class="container-fluid page-header">
-    <div class="row">
-        <nav class="navbar navbar-expand-md navbar-light bg-warning">
+        <nav class=" row navbar navbar-expand-md navbar-light bg-warning">
             <div class="container justify-content-end">
                 <div class="dropdown d-none d-md-flex d-lg-flex">
                     <button class="btn btn-secondary dropdown-toggle btn-dropdow text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,5 +51,4 @@
                 </div>
             </div>
         </nav>
-    </div>
 </header>

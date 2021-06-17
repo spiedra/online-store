@@ -11,15 +11,98 @@
     <title>Online store</title>
 </head>
 
-<body class="bg-light vh-100 d-flex align-items-center justify-content-between flex-column">
+<body class="vh-100">
     <?php
     include_once 'headerView.php';
     ?>
-    <main class="d-flex align-items-center justify-content-center page-main--category">
-        
+    <main class="container-fluid h-100 d-flex align-items-center justify-content-start flex-column w-100">
+        <div class="container text-center mt-4 mb-3">
+            <h1 class="promo-table__title">List products (manage promotions)</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 scrollme">
+                    <table id="example" class="table table-bordered table-responsive">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Day</th>
+                                <th scope="col">Article Name</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Shares</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Bootstrap 4 CDN and Starter Template</td>
+                                <td>Cristina</td>
+                                <td>2.846</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary my-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success">History</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
-    <script src="public/js/bootstrap.bundle.min.js"></script>
+        <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
 <?php
-    require_once 'footerView.php';
+require_once 'footerView.php';
 ?>

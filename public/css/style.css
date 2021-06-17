@@ -11,6 +11,14 @@ body {
   border-radius: 0.5em;
 }
 
+.scrollme {
+  overflow-x: auto;
+}
+
+.promo-table__title{
+  font-size: 1.3em;
+}
+
 .nav-link:hover {
   background-color: rgba(204, 204, 204, 0.959);
 }
@@ -34,7 +42,7 @@ body {
 /* FORM */
 
 .form__register-admin,
-.form__register-product {
+.form__register-product, .table {
   background-color: hsla(0, 0%, 95%, 0.065);
   box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.5);
 }
@@ -99,6 +107,10 @@ body {
     border-radius: 0.8em;
   }
 
+  .promo-table__title{
+    font-size: 1.6em;
+  }
+
   .form__register-admin,
   .form__register-product {
     width: 75%;
@@ -135,6 +147,10 @@ body {
     max-width: 35em;
     height: fit-content;
     border-radius: 0.8em;
+  }
+
+  .promo-table__title{
+    font-size: 2em;
   }
 
   .form__register-admin {

@@ -238,3 +238,25 @@ BEGIN
     END IF;
 END;
 
+---------------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_SHOW_HISTORY_PROMOTIONS(
+IN param_PRODUCT_ID INT
+)
+BEGIN
+	SELECT  
+	P.ID,
+    P.NAME,
+    P.PRICE,
+    PRM.DISCOUNTED_PRICE,
+	PRM.START_DATE,
+    PRM.END_DATE
+	FROM B97452_PROYECTO2_IF4101.tb_PRODUCTS P
+		JOIN b97452_proyecto2_if4101.tb_PRODUCTS_PROMOTION PP
+			ON P.ID = PP.ID_PRODUCT
+				JOIN b97452_proyecto2_if4101.tb_promotion PRM
+					ON PRM.ID = PP.ID_PROMOTION
+	 WHERE P.ID = param_PRODUCT_ID;
+END;
+
