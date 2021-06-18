@@ -8,8 +8,8 @@
     <meta name="keywords" content="store, covid, online, clean" />
     <link rel="stylesheet" href="public/css/bootstrap.min.css" />
     <link rel="stylesheet" href="public/css/style.css" />
-    <!-- <script type="text/javascript" src="public/js/jquery.js"></script>
-    <script src="public/js/modalPromotion.js"></script> -->
+    <script type="text/javascript" src="public/js/jquery.js"></script>
+    <script src="public/js/modalPromotion.js"></script>
     <title>Online store</title>
 </head>
 
@@ -27,87 +27,100 @@
                     <table id="example" class="table table-bordered table-responsive">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col">Day</th>
-                                <th scope="col">Article Name</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Shares</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Bootstrap 4 CDN and Starter Template</td>
-                                <td class="two">Cristina</td>
-                                <td>2.846</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary my-1 btn-modal__create" data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
-                                    <button type="button" class="btn btn-success btn-modal__history" data-bs-toggle="modal" data-bs-target="#success">History</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td class="two">Bootstrap 4 CDN and Starter Template</td>
-                                <td>Cristina</td>
-                                <td>2.846</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary my-1 btn-modal__create" data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
-                                    <button type="button" class="btn btn-success btn-modal__history" data-bs-toggle="modal" data-bs-target="#success">History</button>
-                                </td>
-                            </tr>
+                            <?php
+                            foreach ($vars as $data) {
+                            ?>
+                                <tr>
+                                    <td class="productId fw-bold" scope="row"><?php echo $data['ID'] ?></td>
+                                    <td class="productName"><?php echo $data['NAME'] ?></td>
+                                    <td><?php echo $data['PRICE'] ?></td>
+                                    <td><?php echo $data['DESCRIPTION'] ?></td>
+                                    <td><?php echo $data['TYPE'] ?></td>
+                                    <td><img class="img-responsive" src="public/assets/<?php echo $data['IMAGE_NAME'] ?>" alt="image product" width="65" height="65" /></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary my-1 btn-modal__create" data-bs-toggle="modal" data-bs-target="#exampleModal">Create</button>
+                                        <button type="button" class="btn btn-success btn-modal__history" data-bs-toggle="modal" data-bs-target="#success">History</button>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                        <form class="" method="POST" action="?controller=Session&action=showViewByRole">
+                            <div class="container">
+                                <label class="mt-2 mb-2">Discounted price</label>
+                                <input class="form-control" type="number" min="0.00" max="any" step="0.01" name="discountedPrice" placeholder="Enter the discounted price" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                            <div class="container">
+                                <label class="mt-3 mb-2">Start date</label>
+                                <input type="datetime-local" class="form-control" name="datetime" required>
+                            </div>
+                            <div class="container">
+                                <label class="mt-3 mb-2">End date</label>
+                                <input type="datetime-local" class="form-control" name="datetime" required>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal_tittle"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 scrollme">
+                                    <table id="example" class="table table-bordered table-responsive">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Discounted price</th>
+                                                <th scope="col">Start date</th>
+                                                <th scope="col">End date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tbody-modal">
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
                     </div>
                 </div>
             </div>

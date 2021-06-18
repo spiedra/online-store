@@ -1,14 +1,25 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    require 'libs/configuration.php';
-    require 'models/CategoryModel.php';
+    if (isset($_GET['getCase']) && $_GET['getCase'] == 1) {
+        require 'libs/configuration.php';
+        require 'models/CategoryModel.php';
 
-    $categoryModel = new CategoryModel();
-    $response = $categoryModel->getAllCategories();
-    http_response_code(200);
-    echo json_encode($response, true);
-    exit();
+        $categoryModel = new CategoryModel();
+        $response = $categoryModel->getAllCategories();
+        http_response_code(200);
+        echo json_encode($response, true);
+        exit();
+    } else if (isset($_GET['getCase']) && $_GET['getCase']  == 2) {
+        require 'libs/configuration.php';
+        require 'models/ProductModel.php';
+        $productModel = new ProductModel();
+
+        $response = $productModel->getAllProducts();
+        http_response_code(200);
+        echo json_encode($response, true);
+        exit();
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -76,6 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             http_response_code(406);
             echo json_encode($response);
         }
+    } else if ($_POST['productId']) {
+        require 'libs/configuration.php';
+        require 'models/PromotionModel.php';
+
+        $promotionModel = new PromotionModel();
+        $response = $promotionModel->getAllProducts($_POST['productId']);
+        http_response_code(200);
+        echo json_encode($response);
     }
 }
 

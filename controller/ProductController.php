@@ -26,20 +26,20 @@ class ProductController
                 echo '<script>alert("Failed to save image")</script>';
             }
         } else {
-            echo '<script>alert("Only jpeg and png are accepted")</script>';
+            echo '<script>alert("Only jpeg, png, svg are accepted")</script>';
         }
     }
 
     private function validateFormatImage($imageName)
     {
-        if ($imageName == "image/jpeg" ||  $imageName == "image/pjpeg" ||  $imageName == "image/png")
+        if ($imageName == "image/jpeg" ||  $imageName == "image/pjpeg" ||  $imageName == "image/png" || $imageName == "image/svg+xml")
             return true;
         return false;
     }
 
     public function getAllProducts()
     {
-        
+        return $this->productModel->getAllProducts();
     }
 
     public function getAllCategories()

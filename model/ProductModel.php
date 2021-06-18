@@ -19,7 +19,7 @@ class ProductModel
 
     public function getAllProducts()
     {
-        return ConnectorApi::useHttpGetApi();
+        return ConnectorApi::useHttpGetApi("2");
     }
 
     public function saveImageProduct()

@@ -9,6 +9,15 @@ class ProductModel {
         $this->database = SPDO::singleton();
     }
 
+    public function getAllProducts()
+    {
+        $query = $this->database->prepare("call sp_GET_ALL_PRODUCTS()");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+
     public function registerProduct($name, $price, $description, $category, $image) {
         $query = $this->database->prepare("call sp_REGISTER_PRODUCT(:param_NAME, :param_PRICE
         , :param_DESCRIPTION, :param_CATEGORY, :param_IMAGE, @out_RETURN)");
@@ -23,5 +32,3 @@ class ProductModel {
         return $result['@out_RETURN'];
     }
 }
-
-?>

@@ -16,11 +16,11 @@ class ConnectorApi
         return json_decode($resp, true);
     }
 
-    public static function useHttpGetApi()
+    public static function useHttpGetApi($getCase)
     {
         $resp = json_decode(
             file_get_contents(
-                "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/api/onlineStoreApi.php"
+                "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/api/onlineStoreApi.php"."?getCase=".$getCase
             ),
             TRUE
         );

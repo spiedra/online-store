@@ -15,6 +15,6 @@ class CategoryModel
 
     public function getAllCategories()
     {
-        return ConnectorApi::useHttpGetApi();
+        return ConnectorApi::useHttpGetApi("1");
     }
 }
