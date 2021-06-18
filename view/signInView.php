@@ -13,24 +13,33 @@
 
 <body>
     <main class="container-fluid vh-100 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-warning form__log-in"  method="post" action="">
-            <div class="container">
-                <h1 class="mt-3 text-center">Log in</h1>
+        <form class="container bg-warning form__log-in" method="post" action="?controller=Customer&action=registerCustomer">
+            <div class="container d-flex align-items-center justify-content-center">
+                <h1 class="mt-3 text-center">Sign in</h1>
             </div>
             <div class="container container--one">
                 <label class="mb-2">User name</label>
-                <input class="form-control" type="text" name="userName" placeholder="Enter user name" required>
+                <input class="form-control" type="text" name="userNameCustomer" placeholder="Enter user name" required>
+            </div>
+            <div class="container container--one">
+                <label class="mb-2">Date of birth</label>
+                <input class="form-control" type="date" name="AgeCustomer" placeholder="Enter age" required>
+            </div>
+            <div class="container container--one">
+                <label class="mb-2">Address</label>
+                <input class="form-control" type="text" name="AgeCustomer" placeholder="Enter adress" required>
             </div>
             <div class="container container--two">
                 <label class="mb-2">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input type="password" class="form-control" name="passwordCustomer" placeholder="Password" required>
             </div>
             <div class="container container--three-sign-in">
                 <label class="mb-2">Confirm password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input type="password" class="form-control" name="passwordConfirmedCustomer" placeholder="Password" required>
             </div>
             <div class="container d-flex justify-content-center container--four">
-                <button type="submit" class="btn btn-primary">Log in</button>
+                <a href="?controller=Index&action=showIndexView" class="btn btn-danger">Go back</a>
+                <button type="submit" class="btn btn-primary mx-2">Sign in</button>
             </div>
         </form>
     </main>

@@ -1,16 +1,18 @@
 <?php
 
-class CustomerModel {
-    public function __construct() {
-        
+class CustomerModel
+{
+
+    public function __construct()
+    {
     }
 
-    public function getAllActors() {
-        
+    public function registerCustomer()
+    {
+        return ConnectorApi::useHttpPostApi(array(
+            'userNameCustomer' => $_POST['userNameCustomer'],
+            'passwordCustomer' => $_POST['passwordCustomer'],
+            'passwordConfirmedCustomer' => $_POST['passwordConfirmedCustomer']
+        ));
     }
-
-    public function registerActor($actorName, $actorLastName) {
-       
-    }
-
 }

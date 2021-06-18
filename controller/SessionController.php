@@ -27,7 +27,7 @@ class SessionController
                 break;
 
             case 2:
-                $this->view->show("indexView.php", null);
+                $this->view->show("customerMainView.php", null);
                 break;
         }
     }

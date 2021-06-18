@@ -44,6 +44,31 @@ class OnlineStoreController
         exit();
     }
 
+    public static function RegisterCustomer()
+    {
+        require 'libs/configuration.php';
+        require 'models/CustomerModel.php';
+
+        $customerModel = new CustomerModel();
+        $response = $customerModel->registerCustomer(
+            $_POST['userNameCustomer'],
+            $_POST['passwordCustomer']
+        );
+
+        if ($response == 1) {
+            http_response_code(200);
+            echo json_encode(
+                "Successful registration"
+            );
+        } else {
+            http_response_code(406);
+            echo json_encode(
+                "Username is already in use"
+            );
+        }
+        exit();
+    }
+
     public static function ValidateSession()
     {
         require 'libs/configuration.php';
@@ -87,7 +112,8 @@ class OnlineStoreController
         exit();
     }
 
-    public static function RegisterCategory(){
+    public static function RegisterCategory()
+    {
         require 'libs/configuration.php';
         require 'model/CategoryModel.php';
 
@@ -103,7 +129,8 @@ class OnlineStoreController
         exit();
     }
 
-    public static function GetHistoryPromotionByProduct(){
+    public static function GetHistoryPromotionByProduct()
+    {
         require 'libs/configuration.php';
         require 'models/PromotionModel.php';
 
@@ -114,7 +141,8 @@ class OnlineStoreController
         exit();
     }
 
-    public static function CreatePromotion(){
+    public static function CreatePromotion()
+    {
         require 'libs/configuration.php';
         require 'models/PromotionModel.php';
 

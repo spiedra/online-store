@@ -40,5 +40,5 @@
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
 <?php
-    require_once 'footerView.php';
+require_once 'footerView.php';
 ?>
