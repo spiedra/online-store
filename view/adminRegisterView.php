@@ -11,11 +11,11 @@
     <title>Online store</title>
 </head>
 
-<body class="vh-100">
+<body class="vh-100 d-flex align-items-center justify-content-between flex-column">
     <?php
     include_once 'headerView.php';
     ?>
-    <main class="container-fluid h-75 d-flex align-items-center justify-content-center page-main">
+    <main class="container-fluid h-100 d-flex align-items-center justify-content-center page-main">
         <form class="container bg-light form__register-admin" method="POST" action="?controller=Admin&action=registerAdmin">
             <div class="container">
                 <h1 class="mt-3 text-center form__tittle">Register Admin</h1>

@@ -10,6 +10,11 @@ class PromotionController
         $this->promotionModel = new PromotionModel();
     }
 
+    public function createPromotion()
+    {
+        echo json_encode($this->promotionModel->createPromotion());
+    }
+
     public function getAllProducts()
     {
         return $this->productController->getAllProducts();

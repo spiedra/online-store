@@ -11,6 +11,13 @@ body {
   border-radius: 0.5em;
 }
 
+.container-percentage{
+  display: flex; 
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .scrollme {
   overflow-x: auto;
 }

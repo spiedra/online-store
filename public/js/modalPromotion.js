@@ -1,16 +1,20 @@
+var productName;
+var productPrice;
 $(document).ready(function () {
     $(".btn-modal__create").click(function () {
+        productName = $(this).closest('tr').children('td.productName').text();
+        productPrice = $(this).closest('tr').children('td.productPrice').text();
         var modalTittle = $('.modal-title');
         modalTittle.empty();
-        modalTittle.append('Create promotion to <p class="text-decoration-underline" style="display: inline">' + $(this).closest('tr').children('td.productName').text()+'</p>');
+        modalTittle.append('Create promotion to <p class="text-decoration-underline" style="display: inline">' + productName + '</p>');
     });
 
     $(".btn-modal__history").click(function () {
-        var modalTittle = $('.modal_tittle'); 
-        var productName = $(this).closest('tr').children('td.productName').text();
+        var modalTittle = $('.modal_tittle');
         var tbodyTable = $('.tbody-modal');
+        productName = $(this).closest('tr').children('td.productName').text();
         modalTittle.empty();
-        modalTittle.append('<p class="text-decoration-underline" style="display: inline">'+ productName + '</p> promotion history');
+        modalTittle.append('<p class="text-decoration-underline" style="display: inline">' + productName + '</p> promotion history');
 
         $.ajax({
             url: '?controller=Promotion&action=getPromotionByProduct',
@@ -33,4 +37,25 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#btn_create-promotion").click(function () {
+        $.ajax({
+            url: '?controller=Promotion&action=createPromotion',
+            type: 'post',
+            data: {
+                productName: productName,
+                discountedPrice: calculateDiscount(productPrice, $('#discount-percent').val()),
+                starDate: $('#modal__start-date').val(),
+                endDate: $('#modal__end-date').val()
+            },
+            dataType: 'json',
+            success: function (response) {
+                alert(response);
+            }
+        });
+    });
 });
+
+function calculateDiscount(price, dicountPercentage) {
+    return price - ((dicountPercentage / 100) * price);
+}

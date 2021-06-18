@@ -43,7 +43,7 @@
                                 <tr>
                                     <td class="productId fw-bold" scope="row"><?php echo $data['ID'] ?></td>
                                     <td class="productName"><?php echo $data['NAME'] ?></td>
-                                    <td><?php echo $data['PRICE'] ?></td>
+                                    <td class="productPrice"><?php echo $data['PRICE'] ?></td>
                                     <td><?php echo $data['DESCRIPTION'] ?></td>
                                     <td><?php echo $data['TYPE'] ?></td>
                                     <td><img class="img-responsive" src="public/assets/<?php echo $data['IMAGE_NAME'] ?>" alt="image product" width="65" height="65" /></td>
@@ -68,24 +68,24 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="" method="POST" action="?controller=Session&action=showViewByRole">
+                        <form class="" method="POST">
                             <div class="container">
-                                <label class="mt-2 mb-2">Discounted price</label>
-                                <input class="form-control" type="number" min="0.00" max="any" step="0.01" name="discountedPrice" placeholder="Enter the discounted price" required>
+                                <label class="mt-2 mb-2">Discount percentage</label>
+                                <input id="discount-percent" class="form-control" type="number" min="0.00" max="any" step="0.01" name="discountedPrice" placeholder="%" required>
                             </div>
                             <div class="container">
                                 <label class="mt-3 mb-2">Start date</label>
-                                <input type="datetime-local" class="form-control" name="datetime" required>
+                                <input id="modal__start-date" type="datetime-local" class="form-control" name="datetime" required>
                             </div>
                             <div class="container">
                                 <label class="mt-3 mb-2">End date</label>
-                                <input type="datetime-local" class="form-control" name="datetime" required>
+                                <input id="modal__end-date" type="datetime-local" class="form-control" name="datetime" required>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <button id="btn_create-promotion" type="button" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
