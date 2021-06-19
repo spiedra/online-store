@@ -12,7 +12,10 @@ class CustomerModel
         return ConnectorApi::useHttpPostApi(array(
             'userNameCustomer' => $_POST['userNameCustomer'],
             'passwordCustomer' => $_POST['passwordCustomer'],
-            'passwordConfirmedCustomer' => $_POST['passwordConfirmedCustomer']
+            'firstName' => $_POST['firstName'],
+            'lastName' => $_POST['lastName'],
+            'dateBirth' => $_POST['dateBirth'],
+            'address' => $_POST['address'],
         ));
     }
 }

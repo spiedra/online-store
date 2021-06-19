@@ -52,7 +52,11 @@ class OnlineStoreController
         $customerModel = new CustomerModel();
         $response = $customerModel->registerCustomer(
             $_POST['userNameCustomer'],
-            $_POST['passwordCustomer']
+            $_POST['passwordCustomer'],
+            $_POST['firstName'],
+            $_POST['lastName'],
+            $_POST['dateBirth'],
+            $_POST['address']
         );
 
         if ($response == 1) {

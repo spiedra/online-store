@@ -11,9 +11,9 @@
     <title>Online Store</title>
 </head>
 
-<body>
-    <main class="container-fluid vh-100 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-warning form__log-in" method="post" action="?controller=Customer&action=registerCustomer">
+<body class="py-5 px-0">
+    <main class="container-fluid d-flex align-items-center justify-content-center">
+        <form class="container bg-warning form__sign-in" method="post" action="?controller=Customer&action=registerCustomer">
             <div class="container d-flex align-items-center justify-content-center">
                 <h1 class="mt-3 text-center">Sign in</h1>
             </div>
@@ -22,12 +22,20 @@
                 <input class="form-control" type="text" name="userNameCustomer" placeholder="Enter user name" required>
             </div>
             <div class="container container--one">
+                <label class="mb-2">First name</label>
+                <input class="form-control" type="text" name="firstName" placeholder="Enter your first name" required>
+            </div>
+            <div class="container container--one">
+                <label class="mb-2">Last Name</label>
+                <input class="form-control" type="text" name="lastName" placeholder="Enter your last name" required>
+            </div>
+            <div class="container container--one">
                 <label class="mb-2">Date of birth</label>
-                <input class="form-control" type="date" name="AgeCustomer" placeholder="Enter age" required>
+                <input class="form-control" type="date" name="dateBirth" placeholder="Enter your age" required>
             </div>
             <div class="container container--one">
                 <label class="mb-2">Address</label>
-                <input class="form-control" type="text" name="AgeCustomer" placeholder="Enter adress" required>
+                <input class="form-control" type="text" name="address" placeholder="Enter your address" required>
             </div>
             <div class="container container--two">
                 <label class="mb-2">Password</label>

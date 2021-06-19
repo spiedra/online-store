@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         OnlineStoreController::GetHistoryPromotionByProduct();
     } else if (isset($_POST['productName'], $_POST['discountedPrice'], $_POST['starDate'], $_POST['endDate'])) {
         OnlineStoreController::CreatePromotion();
-    }elseif (isset($_POST['userNameCustomer'], $_POST['passwordCustomer'], $_POST['passwordConfirmedCustomer'])) {
+    }elseif (isset($_POST['userNameCustomer'], $_POST['passwordCustomer'], $_POST['firstName'], $_POST['lastName'], $_POST['dateBirth'], $_POST['address'])) {
         OnlineStoreController::RegisterCustomer();
     }
 }

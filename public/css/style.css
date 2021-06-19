@@ -11,8 +11,8 @@ body {
   border-radius: 0.5em;
 }
 
-.container-percentage{
-  display: flex; 
+.container-percentage {
+  display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@ body {
   overflow-x: auto;
 }
 
-.promo-table__title{
+.promo-table__title {
   font-size: 1.3em;
 }
 
@@ -47,9 +47,9 @@ body {
 }
 
 /* FORM */
-
 .form__register-admin,
-.form__register-product, .table {
+.form__register-product,
+.table {
   background-color: hsla(0, 0%, 95%, 0.065);
   box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.5);
 }
@@ -73,13 +73,18 @@ body {
 }
 
 /* RESPONSIVE */
-@media (max-width: 575.98px) {
+/* @media (max-width: 575.98px) { */
   .form__log-in,
   .form__register-admin,
-  .form__register-product {
+  .form__register-product,
+  .form__sign-in {
     width: 85%;
     height: fit-content;
     border-radius: 0.8em;
+  }
+
+  .form__sign-in {
+    width: 95%;
   }
 
   .form__register-product {
@@ -103,18 +108,23 @@ body {
     margin-bottom: 1.5em;
     margin-top: 1em;
   }
-}
+/* } */
 
 @media (min-width: 575.98px) and (max-width: 991.98px) {
   .form__log-in,
   .form__register-admin,
-  .form__register-product {
+  .form__register-product,
+  .form__sign-in {
     width: 50%;
     height: fit-content;
     border-radius: 0.8em;
   }
 
-  .promo-table__title{
+  .form__sign-in{
+    width: 75%;
+  }
+
+  .promo-table__title {
     font-size: 1.6em;
   }
 
@@ -156,7 +166,11 @@ body {
     border-radius: 0.8em;
   }
 
-  .promo-table__title{
+  .form__sign-in{
+    max-width: 50em;
+  }
+
+  .promo-table__title {
     font-size: 2em;
   }
 
