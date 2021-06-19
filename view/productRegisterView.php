@@ -13,7 +13,7 @@
 
 <body class="vh-100">
     <?php
-    include_once 'headerView.php';
+    include_once 'headerAdminView.php';
     ?>
     <main class="container-fluid d-flex align-items-center justify-content-center page-main">
         <form class="container my-5 bg-light form__register-product" method="POST" enctype="multipart/form-data" action="?controller=Product&action=registerProduct">

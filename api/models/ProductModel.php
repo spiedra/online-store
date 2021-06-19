@@ -18,6 +18,15 @@ class ProductModel {
         return $result;
     }
 
+    public function getAllProductsPromotion()
+    {
+        $query = $this->database->prepare("call sp_GET_ALL_PRODUCTS_PROMOTION()");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+
     public function registerProduct($name, $price, $description, $category, $image) {
         $query = $this->database->prepare("call sp_REGISTER_PRODUCT(:param_NAME, :param_PRICE
         , :param_DESCRIPTION, :param_CATEGORY, :param_IMAGE, @out_RETURN)");

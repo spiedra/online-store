@@ -13,17 +13,17 @@
 
 <body>
     <main class="container-fluid vh-100 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-warning form__log-in"  method="POST" action="?controller=Session&action=showViewByRole">
+        <form class="container bg-warning form__log-in"  method="POST"  action="?controller=Session&action=showViewByRole">
             <div class="container">
                 <h1 class="mt-3 text-center">Log in</h1>
             </div>
             <div class="container container--one">
                 <label class="mb-2">User name</label>
-                <input class="form-control" type="text" name="userName" placeholder="Enter user name" required>
+                <input id="userName" class="form-control" type="text" name="userName" placeholder="Enter user name" required>
             </div>
             <div class="container container--two">
                 <label class="mb-2">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
             <div class="container container--three">
                 <a href="?controller=Customer&action=showSignInView">Sign in</a>

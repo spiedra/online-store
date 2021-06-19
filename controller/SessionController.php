@@ -13,7 +13,7 @@ class SessionController
         // session_cache_limiter('private_no_expire'); 
         // session_start();
     }
-
+    
     public function showViewByRole()
     {
         switch ($this->sessionModel->validateSession()) {

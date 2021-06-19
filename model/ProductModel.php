@@ -22,6 +22,11 @@ class ProductModel
         return ConnectorApi::useHttpGetApi("2");
     }
 
+    public function getAllProductsAsync()
+    {
+        return ConnectorApi::useHttpGetApi("3");
+    }
+
     public function saveImageProduct()
     {
         $folderPath = "public/assets/";

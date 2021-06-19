@@ -54,6 +54,24 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#btn__search").click(function () {
+        var selectCategories = $('#selectCategories');
+
+        $.ajax({
+            url: '?controller=Category&action=getAllCategoriesAsync',
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                selectCategories.empty();
+                selectCategories.append('<option <option value="" disabled selected>Choose category</option>');
+                response.forEach(element => {
+                    selectCategories.append('<option class="select_opcion" value="' +
+                        element['TYPE'] + '">' + element['TYPE'] + '</option>');
+                });
+            }
+        });
+    });
 });
 
 function calculateDiscount(price, dicountPercentage) {

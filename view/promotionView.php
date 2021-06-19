@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="public/css/bootstrap.min.css" />
     <link rel="stylesheet" href="public/css/style.css" />
     <script type="text/javascript" src="public/js/jquery.js"></script>
-    <script src="public/js/modalPromotion.js"></script>
+    <script src="public/js/modal.js"></script>
     <title>Online store</title>
 </head>
 
 <body class="vh-100">
     <?php
-    include_once 'headerView.php';
+    include_once 'headerAdminView.php';
     ?>
     <main class="container-fluid h-100 d-flex align-items-center justify-content-start flex-column w-100">
         <div class="container text-center mt-4 mb-3">

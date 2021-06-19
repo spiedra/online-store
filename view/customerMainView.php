@@ -8,45 +8,44 @@
     <meta name="keywords" content="store, covid, online, clean" />
     <link rel="stylesheet" href="public/css/bootstrap.min.css" />
     <link rel="stylesheet" href="public/css/style.css" />
-    <link rel="stylesheet" href="public/css/style1.css" />
+    <script type="text/javascript" src="public/js/jquery.js"></script>
+    <script src="public/js/modal.js"></script>
+    <script src="public/js/show_products.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <title>Online store</title>
 </head>
 
-<body class="page-body">
+<body>
     <?php
-    include_once 'headerView.php';
+    include_once 'headerCustomerView.php';
     ?>
-    <main id="page-main" class="page-main page-main--tours">
-        <section class="main-section__tours">
-            <div class="section-tours__header">
-                <h2 class="section-tour__tittle">Tours para toda la familia</h2>
-                <div class="container__amount">
-                    <img class="amount-tour__icon" src="public\assets\shopping-bag.svg" alt="Carrito de compras" />
-                    <p id="amount-tours" class="amout-tours"></p>
+    <main id="mainCustomerView">
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="" method="POST">
+                            <div class="container">
+                                <label class="mt-2 mb-2">Product name</label>
+                                <input id="discount-percent" class="form-control" type="text" name="discountedPrice" placeholder="Name" required>
+                            </div>
+                            <div class="container">
+                                <label class="mb-2" for="inputCategories">Categories</label>
+                                <select id="selectCategories" class="form-select" name="categorySelected"></select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="btn_create-promotion" type="button" class="btn btn-primary">Search</button>
+                    </div>
                 </div>
             </div>
-            <h3 class="section__article-tittle">Tours con descuento</h3>
-            <article class="section-tour__article">
-                <div class="article__main-container">
-                    <div class="article__first-row">
-                        <img class="article__image-tour" src="public\assets\shopping-bag.svg" alt="Hombre caminando en montaña" />
-                    </div>
-                    <div class="article__second-row">
-                        <div class="second-row__description">
-                            <p>Las mejores caminatas por la montaña con paisajes increibles viviendo una aventura con
-                                animales.</p>
-                            <label class="label__cost-before">₡25000</label>
-                            <label id="label_cost_1" class="label__cost-after">₡15000</label>
-                        </div>
-                        <div class="secod-row__input">
-                            <label class="tour__label">Cantidad de personas:</label>
-                            <input id="input_tour_1" class="tour__input" type="number" />
-                            <input id="button_tour_1" class="tour__button" type="button" value="Agregar al carrito">
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
+        </div>
     </main>
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>

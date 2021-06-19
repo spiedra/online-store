@@ -6,6 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         OnlineStoreController::GetAllCategories();
     } else if (isset($_GET['getCase']) && $_GET['getCase']  == 2) {
         OnlineStoreController::GetAllProducts();
+    }else if (isset($_GET['getCase']) && $_GET['getCase']  == 3) {
+        OnlineStoreController::GetAllProductsPromotion();
     }
 }
 

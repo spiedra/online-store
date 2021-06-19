@@ -30,6 +30,11 @@ class ProductController
         }
     }
 
+    public function getAllProductsAsync()
+    {
+        echo json_encode($this->productModel->getAllProductsAsync());
+    }
+
     private function validateFormatImage($imageName)
     {
         if ($imageName == "image/jpeg" ||  $imageName == "image/pjpeg" ||  $imageName == "image/png" || $imageName == "image/svg+xml")

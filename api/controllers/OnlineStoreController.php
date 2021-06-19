@@ -26,6 +26,18 @@ class OnlineStoreController
         exit();
     }
 
+    public static function GetAllProductsPromotion()
+    {
+        require 'libs/configuration.php';
+        require 'models/ProductModel.php';
+        $productModel = new ProductModel();
+
+        $response = $productModel->getAllProducts();
+        http_response_code(200);
+        echo json_encode($response);
+        exit();
+    }
+
     public static function RegisterAdmin()
     {
         require 'libs/configuration.php';

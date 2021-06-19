@@ -25,6 +25,11 @@ class CategoryController
         return $this->categoryModel->getAllCategories();
     }
 
+    public function getAllCategoriesAsync()
+    {
+        echo json_encode($this->categoryModel->getAllCategories());
+    }
+
     public function showCategoryRegisterView()
     {
         $this->view->show("categoryRegisterView.php", null);

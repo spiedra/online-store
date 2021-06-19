@@ -46,6 +46,10 @@ body {
   margin: 0em 0.5em;
 }
 
+.page-header{
+  min-width: 256px !important;
+}
+
 /* FORM */
 .form__register-admin,
 .form__register-product,
