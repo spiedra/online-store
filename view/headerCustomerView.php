@@ -1,6 +1,6 @@
-<header class="container-fluid page-header m-0 p-0 page-header">
+<header class="container-fluid page-header m-0 p-0 min-h-256 page-header">
     <nav class="container-fluid navbar navbar-expand-md navbar-light bg-warning flex-row flex-nowrap ">
-        <div class="flex-grow-1">
+        <div class="d-flex align-items-start justify-content-end flex-grow-1">
             <a href="?controller=Index&action=showIndexView" class="btn btn-primary me-auto"><i class="fas fa-arrow-left"></i></a>
         </div>
         <div class="justify-content-end">

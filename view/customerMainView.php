@@ -7,10 +7,11 @@
     <meta name="author" content="Juan Carlos Sequeira Piedra" />
     <meta name="keywords" content="store, covid, online, clean" />
     <link rel="stylesheet" href="public/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="public/css/style.css" />
+    <!-- <link rel="stylesheet" href="public/css/style.css" /> -->
+    <link rel="stylesheet" href="public/css/style1.css" />
     <script type="text/javascript" src="public/js/jquery.js"></script>
     <script src="public/js/modal.js"></script>
-    <script src="public/js/show_products.js"></script>
+    <!-- <script src="public/js/show_products.js"></script> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <title>Online store</title>
 </head>
@@ -19,8 +20,27 @@
     <?php
     include_once 'headerCustomerView.php';
     ?>
-    <main id="mainCustomerView">
-        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
+    <main id="mainCustomerView" class="page-main page-main--tours">
+        <section class="main-section__tours">
+            <article class="section-tour__article">
+                <div class="article__main-container">
+                    <div class="article__first-row">
+                        <img class="article__image-tour" src="https://i.pinimg.com/originals/74/7f/6a/747f6a7b81aa27e5e35b26bace28eb09.jpg" alt="Hombre caminando en montaña" />
+                    </div>
+                    <div class="article__second-row">
+                        <div class="second-row__description">
+                            <p>description</p>
+                            <!-- <label class="label__cost-before">₡25000</label> -->
+                            <label id="label_cost_1" class="label__cost-after">Price: </label>
+                        </div>
+                        <div class="secod-row__input">
+                            <button type="button" class="btn btn-warning btn-sales"><img src="public/assets/add_shopping_cart_black_24dp.svg" alt=""/></button>
+                            <button type="button" class="btn btn-primary btn-sales"><img src="public/assets/favorite_border_black_24dp.svg"/></button>
+                            <button type="button" class="btn btn-warning btn-sales"><img src="public/assets/sell_black_24dp.svg"/></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -46,8 +66,8 @@
                 </div>
             </div>
         </div>
-    </main>
-    <script src="public/js/bootstrap.bundle.min.js"></script>
+    </main> -->
+                <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
 <?php
 // require_once 'footerView.php';
