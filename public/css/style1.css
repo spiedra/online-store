@@ -1,114 +1,113 @@
+.main-section__tours {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
 
-   .main-section__tours {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 100%;
-    height: 100%;
-  }
+.btn-sales {
+  margin: 0em 0.3em;
+  width: 100%;
+}
 
-  .btn-sales{
-    margin: 0em .3em;
-    width: 100%;
-  }
+.section-tour__article {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-content: center;
+  margin: 1em 1em;
+  padding: 1em 1em;
+}
 
+.main__tittle{
+  margin-top: 1em;
+}
+
+.article__main-container {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 1em 0em;
+  height: fit-content;
+  background-color: hsla(0, 0%, 95%, 0.065);
+  box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 1em;
+  padding: 0em 0em 1em 0em;
+}
+
+.article__first-row {
+  height: fit-content;
+  width: 100%;
+  border-radius: 1em;
+}
+
+.article__image-tour {
+  width: 100%;
+  height: 23.3em;
+  border-radius: 1em;
+  object-fit: contain;
+}
+
+.article__second-row {
+  text-align: left;
+  margin: 1em 1em;
+}
+
+.label__cost-before {
+  text-decoration: line-through;
+}
+
+.secod-row__input {
+  display: flex;
+  justify-content: center;
+  height: 3em;
+  margin-top: 0.4em;
+  flex-flow: row nowrap;
+}
+
+.tour__label {
+  font-size: 100%;
+}
+
+.tour__input {
+  width: 25%;
+  font-size: 100%;
+  margin-top: 0.3em;
+}
+
+.tour__button {
+  width: 10em;
+  padding: 0.4em 0.3em;
+  margin-top: 0.4em;
+  background-color: #f2cb05;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.tour__button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media only screen and (min-width: 800px) {
   .section__article-tittle {
-    font-size: 1;
+    font-size: 1.4em;
     font-weight: lighter;
-  }
-  
-  .section-tour__article {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-evenly;
-    align-content: center;
-    margin: 1em 1em;
-    padding: 1em 1em;
   }
 
   .article__main-container {
-    display: flex;
-    flex-flow: column nowrap;
-    margin: 1em 0em;
-    height: fit-content;
-  }
-  
-  .article__first-row {
-    height: fit-content;
-    width: 100%;
-    border-radius: 50px;
+    width: 19.64em;
   }
 
-
-    .article__image-tour {
-    width: 100%;
-    height: 23.3em;
-    border-radius: 50px;
-    object-fit: cover;
+  .page-main--tours {
+    margin: 0;
   }
 
-
-  .article__second-row {
-    text-align: left;
-    margin: 1em 1em;
+  .section-tour__article {
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 0;
   }
-
-    .label__cost-before {
-    text-decoration: line-through;
-  }
-
-    .secod-row__input {
-    display: flex;
-    justify-content: center;
-    height: 3em;
-    margin-top: 0.4em;
-    flex-flow: row nowrap;
-  }
-
-    .tour__label {
-    font-size: 100%;
-  }
-
-   .tour__input {
-    width: 25%;
-    font-size: 100%;
-    margin-top: 0.3em;
-  }
-
-    .tour__button {
-    width: 10em;
-    padding: 0.4em 0.3em;
-    margin-top: 0.4em;
-    background-color: #f2cb05;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-  }
-
-    .tour__button:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  
-  @media only screen and (min-width: 800px) {
-    .section__article-tittle {
-      font-size: 1.4em;
-      font-weight: lighter;
-    }
-
-    .article__main-container {
-      width: 19.64em;
-    }
-
-    .section-tour__article {
-      flex-flow: row wrap;
-      justify-content: space-evenly;
-      align-items: flex-start;
-      padding: 0;
-    }
-  }
-  
-  @media (max-width: 799px) and (min-width: 600px) {
-
-  }
-   
+}

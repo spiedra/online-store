@@ -1,20 +1,80 @@
+var section,
+    article,
+    articleMainContainer,
+    articleFirstRow,
+    articleImage,
+    articleSecondRow,
+    secondRowDescription,
+    secondRowInput,
+    articleDescription,
+    lblPrice,
+    btnShoppingCart,
+    btnFavorite,
+    btnBuy,
+    imgShoppingCart,
+    imgFav,
+    imgBuy,
+    mainTittle;
+
 $(document).ready(function () {
-    // showProducts();
+    showProducts();
 });
 
 function showProducts() {
-    $.ajax({
+    initMainVar();
+        $.ajax({
         url: '?controller=Product&action=getAllProductsAsync',
         type: 'GET',
         dataType: 'json',
         success: function (response) {
-            // alert(response);
+            response.forEach(element => {
+                initVar();
+                modifyArticleMaincontainer();
+                modifyArticleFirstRow();
+                modifyImageArticle("public/assets/" + element['IMAGE_NAME'], "Icon " + element['IMAGE_NAME']);
+                modifyArticleSecondRow();
+                modifySecondRowDescription();
+                modifyArticleDescription(element['DESCRIPTION']);
+                modifyLabelPrice(element['PRICE']);
+                modifySecondRowInput();
+                createButton();
+                modifyBtnImages(imgShoppingCart, "public/assets/add_shopping_cart_black_24dp.svg", "Icon shopping cart", btnShoppingCart);
+                modifyBtnImages(imgFav, "public/assets/favorite_border_black_24dp.svg", "Icon heard", btnFavorite);
+                modifyBtnImages(imgBuy, "public/assets/sell_black_24dp.svg", "Icon sell", btnBuy);
+                document.getElementById('mainCustomerView').appendChild(section);
+            });
         }
     });
 }
 
-function addChldToPrincipalModal(child) {
-    principalModal.appendChild(child);
+function initVar() {
+    articleMainContainer = document.createElement('div');
+    articleFirstRow = document.createElement('div');
+    articleImage = document.createElement('img');
+    articleSecondRow = document.createElement('div');
+    secondRowDescription = document.createElement('div');
+    secondRowInput = document.createElement('div');
+    articleDescription = document.createElement('p');
+    btnBuy = document.createElement('button');
+    btnFavorite = document.createElement('button');
+    btnShoppingCart = document.createElement('button');
+    lblPrice = document.createElement('label');
+    imgShoppingCart = document.createElement('img');
+    imgFav = document.createElement('img');
+    imgBuy = document.createElement('img');
+}
+
+function initMainVar() {
+    section = document.createElement('section');
+    article = document.createElement('article');
+    mainTittle = document.createElement('h1');
+    modifySection();
+    modifyMainTittle();
+    modifyArticle();
+}
+
+function addChildToElement(element, child) {
+    element.appendChild(child);
 }
 
 function setAttributeToElement(element, name, value) {
@@ -25,8 +85,78 @@ function addTextNode(text) {
     return document.createTextNode(text);
 }
 
-// function modifyModalContainer() {
-//     setAttributeToElement(modalContainer, "class", "modal-container");
-//     setAttributeToElement(modalContainer, "style", "visibility: visible; opacity: 1;");
-//     setAttributeToElement(modalContainer, "id", "modal-container");
-// }
+function modifySection() {
+    setAttributeToElement(section, "class", "main-section__tours");
+}
+
+function modifyArticle() {
+    setAttributeToElement(article, "class", "section-tour__article");
+    addChildToElement(section, article);
+}
+
+function modifyMainTittle() {
+    setAttributeToElement(mainTittle, "class", "main__tittle");
+    mainTittle.appendChild(addTextNode("Online Store"));
+    addChildToElement(section, mainTittle);
+}
+
+function modifyArticleMaincontainer() {
+    setAttributeToElement(articleMainContainer, "class", "article__main-container");
+    addChildToElement(article, articleMainContainer);
+}
+
+function modifyArticleFirstRow() {
+    setAttributeToElement(articleFirstRow, "class", "article__first-row");
+    addChildToElement(articleMainContainer, articleFirstRow);
+}
+
+function modifyImageArticle(imagePath, imageAlt) {
+    setAttributeToElement(articleImage, "class", "article__image-tour");
+    setAttributeToElement(articleImage, "src", imagePath);
+    setAttributeToElement(articleImage, "alt", imageAlt);
+    addChildToElement(articleFirstRow, articleImage);
+}
+
+function modifyArticleSecondRow() {
+    setAttributeToElement(articleSecondRow, "class", "article__second-row");
+    addChildToElement(articleMainContainer, articleSecondRow);
+}
+
+function modifySecondRowDescription() {
+    setAttributeToElement(secondRowDescription, "class", "second-row__description");
+    addChildToElement(articleSecondRow, secondRowDescription);
+}
+
+function modifyArticleDescription(description) {
+    articleDescription.appendChild(addTextNode(description));
+    addChildToElement(secondRowDescription, articleDescription);
+}
+
+function modifyLabelPrice(price) {
+    setAttributeToElement(lblPrice, "class", "label__cost-after");
+    lblPrice.appendChild(addTextNode("Price: "+price));
+    addChildToElement(secondRowDescription, lblPrice);
+}
+
+function modifySecondRowInput() {
+    setAttributeToElement(secondRowInput, "class", "secod-row__input");
+    addChildToElement(articleMainContainer, secondRowInput);
+}
+
+function createButton() {
+    setAttributeToElement(btnShoppingCart, "class", "btn btn-warning btn-sales");
+    addChildToElement(secondRowInput, btnShoppingCart);
+
+    setAttributeToElement(btnFavorite, "class", "btn btn-primary btn-sales");
+    addChildToElement(secondRowInput, btnFavorite);
+
+    setAttributeToElement(btnBuy, "class", "btn btn-warning btn-sales");
+    addChildToElement(secondRowInput, btnBuy);
+}
+
+function modifyBtnImages(element, imagePath, imageAlt, btnParent) {
+    setAttributeToElement(element, "src", imagePath);
+    setAttributeToElement(element, "alt", imageAlt);
+    addChildToElement(btnParent, element);
+    addChildToElement(secondRowInput, btnParent);
+}
