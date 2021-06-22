@@ -5,7 +5,7 @@ class CategoryModel {
     protected $database;
 
     public function __construct() {
-        require_once 'libs/SPDO.php';
+        require_once 'libsApi/SPDO.php';
         $this->database = SPDO::singleton();
     }
 

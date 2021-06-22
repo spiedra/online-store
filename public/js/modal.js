@@ -72,6 +72,46 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#btn__shopping-cart").click(function () {
+        var tbodyTable = $('.tbody-shopping-cart');
+        $.ajax({
+            url: '?controller=Customer&action=getProductsByCustomer',
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                tbodyTable.empty();
+                response.forEach(element => {
+                    tbodyTable.append($('<tr id="' + element['ID'] + '">')
+                        .append($('<td scope="row" class="fw-bold productId">"').append(element['ID']))
+                        .append($('<td>').append(element['NAME']))
+                        .append($('<td>').append(element['PRICE']))
+                        .append($('<td>').append($('<img class="img-responsive" alt="image product" width="65" height="65" src="public/assets/' + element['IMAGE_NAME'] + '">')))
+                        .append($('<td>').append($('<button class="btn btn-danger mt-3 btn-delete-cart"><i class="fas fa-trash-alt fa-lg"></i></button>')))
+                    )
+                });
+
+                $(".btn-delete-cart").click(function () {
+                   var trid = $(this).closest('tr');
+                    $.ajax({
+                        url: '?controller=Customer&action=deleteProductCart',
+                        type: 'POST',
+                        data: {
+                            productId: $(this).closest('tr').children('td.productId').text(),
+                        },
+                        dataType: 'json',
+                        success: function (response) {
+                            alert(response);
+                            trid.remove();
+                        }
+                    });
+                    
+                });
+            }
+        });
+    });
+
+
 });
 
 function calculateDiscount(price, dicountPercentage) {

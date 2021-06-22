@@ -1,7 +1,7 @@
 <header class="container-fluid page-header m-0 p-0 page-header">
     <nav class="navbar navbar-expand-md navbar-light bg-warning flex-row flex-nowrap">
         <div class="mx-2">
-            <a href="?controller=Index&action=showIndexView" class="btn btn-primary me-auto"><i class="fas fa-arrow-left"></i></a>
+            <a href="?controller=Session&action=logOut" class="btn btn-primary me-auto"><i class="fas fa-arrow-left"></i></a>
         </div>
         <div class="container-fluid justify-content-end">
             <div class="dropdown d-none d-md-flex d-lg-flex">

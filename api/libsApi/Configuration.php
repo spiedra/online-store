@@ -1,5 +1,5 @@
 <?php
-require 'libs/Config.php';
+require 'libsApi/Config.php';
 $config = Config::singleton();
 
 $config->set('controllerFolder', 'controller/');

@@ -344,7 +344,7 @@ CREATE TABLE b97452_proyecto2_if4101.tb_ORDER_HEADER
 ----------------------------------
 
 DELIMITER $$
-CREATE PROCEDURE b97452_proyecto2_if4101.sb_GET_ALL_PRODUCTS_PROMOTION()
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_ALL_PRODUCTS_PROMOTION()
 BEGIN 
 	SELECT  
 		 PR.ID
@@ -353,9 +353,100 @@ BEGIN
         ,PR.DESCRIPTION
         ,CT.TYPE
         ,IM.IMAGE_NAME
+        ,PR.NUMBER_LIKES
+        ,PRM.DISCOUNTED_PRICE
+        ,PRM.START_DATE
+        ,PRM.END_DATE
 	FROM b97452_proyecto2_if4101.tb_products PR
 		JOIN b97452_proyecto2_if4101.tb_category CT
 			ON PR.ID_CATEGORY = CT.ID
 			JOIN b97452_proyecto2_if4101.tb_image IM
-				ON PR.ID_IMAGE = IM.ID;
+				ON PR.ID_IMAGE = IM.ID
+                JOIN b97452_proyecto2_if4101.tb_products_promotion PP
+					ON PP.ID_PRODUCT = PR.ID
+                    JOIN b97452_proyecto2_if4101.tb_promotion PRM
+						ON PRM.ID = PP.ID_PROMOTION;
+END;
+
+-------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_REGISTER_USER_PRODUCT
+(
+IN param_USER_NAME  VARCHAR(36), 
+IN param_ID_PRODUCT INT,
+OUT out_RETURN      INT)
+BEGIN 
+	DECLARE local_USER_ID INT;
+    SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
+
+	IF EXISTS (SELECT ID_USER, ID_PRODUCT FROM b97452_proyecto2_if4101.tb_USER_PRODUCT WHERE ID_USER = local_USER_ID AND ID_PRODUCT = param_ID_PRODUCT) THEN
+		SELECT 0 INTO out_RETURN;
+	ELSE 	
+    INSERT INTO b97452_proyecto2_if4101.tb_USER_PRODUCT(ID_USER, ID_PRODUCT)
+    VALUES(local_USER_ID, param_ID_PRODUCT);
+	SELECT 1 INTO out_RETURN;
+    END IF;
+END;
+
+-----------------------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_ALL_PRODUCTS_CUSTOMER(IN param_USER_NAME  VARCHAR(36))
+BEGIN 
+	DECLARE local_USER_ID INT;
+    SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
+	SELECT 
+		P.ID,
+        P.NAME,
+        P.PRICE,
+        IMG.IMAGE_NAME
+	FROM b97452_proyecto2_if4101.tb_user_product UP
+		JOIN b97452_proyecto2_if4101.tb_products P
+			ON UP.ID_PRODUCT = P.ID
+				JOIN b97452_proyecto2_if4101.tb_users U
+					ON UP.ID_USER = U.ID
+                    JOIN b97452_proyecto2_if4101.tb_image IMG
+						ON IMG.ID = P.ID_IMAGE
+	WHERE U.ID = local_USER_ID;
+END;
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_DELETE_PRODUCT_CUSTOMER(
+IN param_USER_NAME  VARCHAR(36), 
+IN param_ID_PRODUCT INT
+)
+BEGIN 
+	DECLARE local_USER_ID INT;
+    SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
+	DELETE FROM b97452_proyecto2_if4101.tb_USER_PRODUCT
+	WHERE ID_USER = local_USER_ID AND ID_PRODUCT = param_ID_PRODUCT;
+END;
+
+----------------------------------------------
+
+-- CREATE TABLE b97452_proyecto2_if4101.tb_ORDER_DETAIL
+-- (
+-- 	ID
+-- )
+
+----------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_PURCHASE_PRODUCTS(
+IN param_USER_NAME  VARCHAR(36),
+IN param_TOTAL      DECIMAL(9,2),
+OUT out_RETURN      INT)
+BEGIN 
+	DECLARE local_USER_ID INT;
+    DECLARE n INT DEFAULT 0;
+	DECLARE i INT DEFAULT 0;
+    
+	SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
+    SELECT COUNT(*) FROM b97452_proyecto2_if4101.tb_user_product INTO n;
+	SET i=0;
+    WHILE i<n DO 
+    INSERT INTO
+    SET i = i + 1;
+    END WHILE;
 END;

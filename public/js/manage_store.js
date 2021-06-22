@@ -17,12 +17,12 @@ var section,
     mainTittle;
 
 $(document).ready(function () {
-    showProducts();
+    initListener();
 });
 
-function showProducts() {
+function initListener() {
     initMainVar();
-        $.ajax({
+    $.ajax({
         url: '?controller=Product&action=getAllProductsAsync',
         type: 'GET',
         dataType: 'json',
@@ -37,12 +37,13 @@ function showProducts() {
                 modifyArticleDescription(element['DESCRIPTION']);
                 modifyLabelPrice(element['PRICE']);
                 modifySecondRowInput();
-                createButton();
+                createButton(element['ID']);
                 modifyBtnImages(imgShoppingCart, "public/assets/add_shopping_cart_black_24dp.svg", "Icon shopping cart", btnShoppingCart);
                 modifyBtnImages(imgFav, "public/assets/favorite_border_black_24dp.svg", "Icon heard", btnFavorite);
                 modifyBtnImages(imgBuy, "public/assets/sell_black_24dp.svg", "Icon sell", btnBuy);
                 document.getElementById('mainCustomerView').appendChild(section);
             });
+            createListenerButton();
         }
     });
 }
@@ -134,7 +135,7 @@ function modifyArticleDescription(description) {
 
 function modifyLabelPrice(price) {
     setAttributeToElement(lblPrice, "class", "label__cost-after");
-    lblPrice.appendChild(addTextNode("Price: "+price));
+    lblPrice.appendChild(addTextNode("Price: " + price));
     addChildToElement(secondRowDescription, lblPrice);
 }
 
@@ -143,14 +144,19 @@ function modifySecondRowInput() {
     addChildToElement(articleMainContainer, secondRowInput);
 }
 
-function createButton() {
-    setAttributeToElement(btnShoppingCart, "class", "btn btn-warning btn-sales");
+function createButton(idProduct) {
+    setAttributeToElement(btnShoppingCart, "id", idProduct);
+    setAttributeToElement(btnShoppingCart, "class", "btn btn-warning btn-sales btn-shopping-cart");
     addChildToElement(secondRowInput, btnShoppingCart);
 
-    setAttributeToElement(btnFavorite, "class", "btn btn-primary btn-sales");
+    setAttributeToElement(btnFavorite, "id", idProduct);
+    setAttributeToElement(btnFavorite, "class", "btn btn-warning btn-sales btn-fav");
     addChildToElement(secondRowInput, btnFavorite);
 
-    setAttributeToElement(btnBuy, "class", "btn btn-warning btn-sales");
+    setAttributeToElement(btnBuy, "id", idProduct); 
+    setAttributeToElement(btnBuy, "class", "btn btn-warning btn-sales btn-buy");
+    setAttributeToElement(btnBuy, "data-bs-toggle", "modal");
+    setAttributeToElement(btnBuy, "data-bs-target", "#checkOutModal");
     addChildToElement(secondRowInput, btnBuy);
 }
 
@@ -159,4 +165,39 @@ function modifyBtnImages(element, imagePath, imageAlt, btnParent) {
     setAttributeToElement(element, "alt", imageAlt);
     addChildToElement(btnParent, element);
     addChildToElement(secondRowInput, btnParent);
+}
+
+function createListenerButton() {
+    var product = $(this).attr('id');
+    $(".btn-shopping-cart").click(function () {
+        $.ajax({
+            url: '?controller=Customer&action=addProductToCustomerCart',
+            type: 'POST',
+            data: {
+                productId: $(this).attr('id')
+            },
+            dataType: 'json',
+            success: function (response) {
+                 alert(response);
+            }
+        });
+    });
+
+    $(".btn-fav").click(function () {
+
+    });
+
+    $("#btn_purchase").click(function () {
+       $.ajax({
+            url: '?controller=Customer&action=',
+            type: 'POST',
+            data: {
+                productId: $(this).attr('id')
+            },
+            dataType: 'json',
+            success: function (response) {
+                 alert(response);
+            }
+        });
+    });
 }

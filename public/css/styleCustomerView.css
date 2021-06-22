@@ -11,6 +11,10 @@
   width: 100%;
 }
 
+.btn-delete-cart{
+  margin-top: 1.5em;
+}
+
 .section-tour__article {
   display: flex;
   flex-flow: column nowrap;
