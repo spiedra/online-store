@@ -4,6 +4,8 @@ class ProductModel
 {
     public function __construct()
     {
+        require_once 'libs/SPDO.php';
+        $this->database = SPDO::singleton();
     }
 
     public function registerProduct()
@@ -15,6 +17,15 @@ class ProductModel
             'categorySelected' => $_POST['categorySelected'],
             'imageFile' =>  $_FILES['imageFile']['name']
         ));
+    }
+
+    public function getProductsBySearch($productName, $categoryType)
+    {
+        $query = $this->database->prepare("call sp_SEARCH_PRODUCTS('$productName', '$categoryType')");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
     }
 
     public function getAllProducts()

@@ -42,6 +42,11 @@ class ProductController
         return false;
     }
 
+    public function getProductsBySearch()
+    {   
+        echo json_encode($this->productModel->getProductsBySearch($_POST['productName'], $_POST['categoryType']));
+    }
+
     public function getAllProducts()
     {
         return $this->productModel->getAllProducts();

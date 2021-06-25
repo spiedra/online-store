@@ -1,6 +1,11 @@
 var productName;
 var productPrice;
+
 $(document).ready(function () {
+    createListenerModals();
+});
+
+function createListenerModals() {
     $(".btn-modal__create").click(function () {
         productName = $(this).closest('tr').children('td.productName').text();
         productPrice = $(this).closest('tr').children('td.productPrice').text();
@@ -86,13 +91,14 @@ $(document).ready(function () {
                         .append($('<td scope="row" class="fw-bold productId">"').append(element['ID']))
                         .append($('<td>').append(element['NAME']))
                         .append($('<td>').append(element['PRICE']))
+                        .append($('<td>').append(element['AMOUNT_PRODUCTS']))
                         .append($('<td>').append($('<img class="img-responsive" alt="image product" width="65" height="65" src="public/assets/' + element['IMAGE_NAME'] + '">')))
                         .append($('<td>').append($('<button class="btn btn-danger mt-3 btn-delete-cart"><i class="fas fa-trash-alt fa-lg"></i></button>')))
                     )
                 });
 
                 $(".btn-delete-cart").click(function () {
-                   var trid = $(this).closest('tr');
+                    var trid = $(this).closest('tr');
                     $.ajax({
                         url: '?controller=Customer&action=deleteProductCart',
                         type: 'POST',
@@ -105,14 +111,12 @@ $(document).ready(function () {
                             trid.remove();
                         }
                     });
-                    
+
                 });
             }
         });
     });
-
-
-});
+}
 
 function calculateDiscount(price, dicountPercentage) {
     return price - ((dicountPercentage / 100) * price);

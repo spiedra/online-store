@@ -288,7 +288,8 @@ BEGIN
 		JOIN b97452_proyecto2_if4101.tb_category CT
 			ON PR.ID_CATEGORY = CT.ID
 			JOIN b97452_proyecto2_if4101.tb_image IM
-				ON PR.ID_IMAGE = IM.ID;
+				ON PR.ID_IMAGE = IM.ID
+	ORDER BY PR.ID ASC;
 END;
 
 ----------------------------------------
@@ -321,11 +322,16 @@ END;
 
 CREATE TABLE  b97452_proyecto2_if4101.tb_USER_PRODUCT -- SHOPPING CART 
 (
- ID_USER    INT NOT NULL
-,ID_PRODUCT INT NOT NULL
-,CONSTRAINT PK_USER_PRODUCT PRIMARY KEY (ID_USER, ID_PRODUCT)
+ ID              INT AUTO_INCREMENT PRIMARY KEY
+,ID_USER         INT NOT NULL
+,ID_PRODUCT      INT NOT NULL
+,IS_PURCHASED    BIT(1) DEFAULT 0
+,ID_ORDER_HEADER INT NULL
+,AMOUNT_PRODUCTS INT NOT NULL
+,TOTAL_DETAIL    DECIMAL(9,2) NOT NULL
 ,CONSTRAINT FK_USER_PRODUCT_USER FOREIGN KEY (ID_USER) REFERENCES b97452_proyecto2_if4101.tb_USERS (ID)
 ,CONSTRAINT FK_USER_PRODUCT_PRODUCT FOREIGN KEY (ID_PRODUCT) REFERENCES b97452_proyecto2_if4101.tb_products (ID)
+,CONSTRAINT FK_USER_PRODUCT_ORDER_HEADER FOREIGN KEY (ID_ORDER_HEADER) REFERENCES b97452_proyecto2_if4101.tb_order_header(ID)
 );
 
 -------------------------------
@@ -333,11 +339,9 @@ CREATE TABLE  b97452_proyecto2_if4101.tb_USER_PRODUCT -- SHOPPING CART
 CREATE TABLE b97452_proyecto2_if4101.tb_ORDER_HEADER 
 (
 	ID            INT AUTO_INCREMENT PRIMARY KEY,
-    ID_PRODUCT    INT NOT NULL,
     ID_USER       INT NOt NULL,
-    TOTAL         DECIMAL(9, 2) NOT NULL,
+    TOTAL         DECIMAL(9, 2) NULL,
     MODIFIED_DATE DATETIME NOT NULL,
-	CONSTRAINT FK_ORDER_HEADER_PRODUCT FOREIGN KEY (ID_PRODUCT) REFERENCES b97452_proyecto2_if4101.tb_products (ID),
 	CONSTRAINT FK_ORDER_HEADER_USER FOREIGN KEY (ID_USER) REFERENCES b97452_proyecto2_if4101.tb_USERS (ID)
 );
 
@@ -373,18 +377,22 @@ END;
 DELIMITER $$
 CREATE PROCEDURE b97452_proyecto2_if4101.sp_REGISTER_USER_PRODUCT
 (
-IN param_USER_NAME  VARCHAR(36), 
-IN param_ID_PRODUCT INT,
-OUT out_RETURN      INT)
+IN param_USER_NAME       VARCHAR(36), 
+IN param_ID_PRODUCT      INT,
+IN param_AMOUNT_PRODUCTS INT,
+OUT out_RETURN           INT)
 BEGIN 
 	DECLARE local_USER_ID INT;
+    DECLARE local_TOTAL_DETAIL DECIMAL(9,0);
     SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
 
-	IF EXISTS (SELECT ID_USER, ID_PRODUCT FROM b97452_proyecto2_if4101.tb_USER_PRODUCT WHERE ID_USER = local_USER_ID AND ID_PRODUCT = param_ID_PRODUCT) THEN
+	IF EXISTS (SELECT ID_USER, ID_PRODUCT FROM b97452_proyecto2_if4101.tb_USER_PRODUCT WHERE ID_USER = local_USER_ID AND ID_PRODUCT = param_ID_PRODUCT 
+    AND IS_PURCHASED = 0) THEN
 		SELECT 0 INTO out_RETURN;
 	ELSE 	
-    INSERT INTO b97452_proyecto2_if4101.tb_USER_PRODUCT(ID_USER, ID_PRODUCT)
-    VALUES(local_USER_ID, param_ID_PRODUCT);
+	SET local_TOTAL_DETAIL = (SELECT  PRICE * param_AMOUNT_PRODUCTS FROM b97452_proyecto2_if4101.tb_PRODUCTS  WHERE ID = param_ID_PRODUCT);
+    INSERT INTO b97452_proyecto2_if4101.tb_USER_PRODUCT(ID_USER, ID_PRODUCT, AMOUNT_PRODUCTS, TOTAL_DETAIL)
+    VALUES(local_USER_ID, param_ID_PRODUCT, param_AMOUNT_PRODUCTS, local_TOTAL_DETAIL);
 	SELECT 1 INTO out_RETURN;
     END IF;
 END;
@@ -400,6 +408,7 @@ BEGIN
 		P.ID,
         P.NAME,
         P.PRICE,
+        UP.AMOUNT_PRODUCTS,
         IMG.IMAGE_NAME
 	FROM b97452_proyecto2_if4101.tb_user_product UP
 		JOIN b97452_proyecto2_if4101.tb_products P
@@ -408,7 +417,7 @@ BEGIN
 					ON UP.ID_USER = U.ID
                     JOIN b97452_proyecto2_if4101.tb_image IMG
 						ON IMG.ID = P.ID_IMAGE
-	WHERE U.ID = local_USER_ID;
+	WHERE U.ID = local_USER_ID AND UP.IS_PURCHASED = 0;
 END;
 
 DELIMITER $$
@@ -425,28 +434,143 @@ END;
 
 ----------------------------------------------
 
--- CREATE TABLE b97452_proyecto2_if4101.tb_ORDER_DETAIL
--- (
--- 	ID
--- )
-
-----------------------------------------------
-
 DELIMITER $$
 CREATE PROCEDURE b97452_proyecto2_if4101.sp_PURCHASE_PRODUCTS(
-IN param_USER_NAME  VARCHAR(36),
-IN param_TOTAL      DECIMAL(9,2),
-OUT out_RETURN      INT)
+IN param_USER_NAME VARCHAR(36))
 BEGIN 
-	DECLARE local_USER_ID INT;
-    DECLARE n INT DEFAULT 0;
-	DECLARE i INT DEFAULT 0;
+    DECLARE local_TOTAL_PURCHASE DECIMAL(9,2);
+    DECLARE local_USER_ID INT;
+    DECLARE local_ID_ORDER_HEADER INT;
     
-	SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
-    SELECT COUNT(*) FROM b97452_proyecto2_if4101.tb_user_product INTO n;
-	SET i=0;
-    WHILE i<n DO 
-    INSERT INTO
-    SET i = i + 1;
-    END WHILE;
+    SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
+    
+    INSERT INTO b97452_proyecto2_if4101.tb_order_header(ID_USER, MODIFIED_DATE)
+    VALUES(local_USER_ID, NOW());
+    
+   SET local_ID_ORDER_HEADER = (SELECT LAST_INSERT_ID());
+
+    UPDATE b97452_proyecto2_if4101.tb_user_product
+    SET ID_ORDER_HEADER = local_ID_ORDER_HEADER
+	WHERE ID_USER = local_USER_ID AND IS_PURCHASED = 0;
+    
+	UPDATE b97452_proyecto2_if4101.tb_user_product 
+    SET IS_PURCHASED = 1
+    WHERE ID_USER = local_USER_ID AND IS_PURCHASED = 0;
+    
+	SET local_TOTAL_PURCHASE = (SELECT SUM(TOTAL_DETAIL) FROM b97452_proyecto2_if4101.tb_user_product WHERE ID_USER = local_USER_ID AND ID_ORDER_HEADER = local_ID_ORDER_HEADER);
+    UPDATE b97452_proyecto2_if4101.tb_order_header
+	SET TOTAL = local_TOTAL_PURCHASE
+    WHERE ID = local_ID_ORDER_HEADER;
 END;
+
+-------------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_PURCHASE_PRODUCT(
+IN param_USER_NAME VARCHAR(36),
+IN param_ID_PRODUCT INT,
+IN param_AMOUNT_PRODUCTS INT)
+BEGIN 
+     DECLARE local_TOTAL_PURCHASE DECIMAL(9,2);
+     DECLARE local_USER_ID INT;
+     DECLARE local_ID_ORDER_HEADER INT;
+	 SET local_TOTAL_PURCHASE = (SELECT PRICE * param_AMOUNT_PRODUCTS FROM b97452_proyecto2_if4101.tb_products WHERE ID = param_ID_PRODUCT);
+     SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
+    
+     INSERT INTO b97452_proyecto2_if4101.tb_order_header(ID_USER, TOTAL ,MODIFIED_DATE)
+     VALUES(local_USER_ID, local_TOTAL_PURCHASE, NOW());
+
+	 SET local_ID_ORDER_HEADER = (SELECT LAST_INSERT_ID());
+
+	 INSERT INTO b97452_proyecto2_if4101.tb_user_product(ID_USER, ID_PRODUCT,IS_PURCHASED, ID_ORDER_HEADER, AMOUNT_PRODUCTS, TOTAL_DETAIL)
+     VALUES(local_USER_ID, param_ID_PRODUCT, 1, local_ID_ORDER_HEADER, param_AMOUNT_PRODUCTS, local_TOTAL_PURCHASE);
+END;
+
+
+-------------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_ORDER_HEADER_CUSTOMER(
+IN param_USER_NAME VARCHAR(36))
+BEGIN
+	DECLARE local_USER_ID INT;    
+    SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
+    
+    SELECT 
+		ID,
+        TOTAL,
+        MODIFIED_DATE
+    FROM b97452_proyecto2_if4101.tb_order_header
+    WHERE ID_USER = local_USER_ID;
+END;
+
+--------------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_PURCHASED_PRODUCTS(
+IN param_USER_NAME       VARCHAR(36),
+IN param_ID_ORDER_HEADER INT)
+BEGIN
+	DECLARE local_USER_ID INT;    
+    SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
+    
+    SELECT 
+	P.NAME,
+    p.PRICE,
+    UP.TOTAL_DETAIL,
+    SUM(UP.AMOUNT_PRODUCTS) as amount_products
+    FROM b97452_proyecto2_if4101.tb_user_product UP
+		JOIN b97452_proyecto2_if4101.tb_products P
+			ON UP.ID_PRODUCT = P.ID
+            JOIN b97452_proyecto2_if4101.tb_users U
+				ON U.ID = UP.ID_USER
+    WHERE ID_USER = local_USER_ID AND UP.IS_PURCHASED = 1 AND UP.ID_ORDER_HEADER = param_ID_ORDER_HEADER
+    GROUP BY P.NAME, UP.ID_ORDER_HEADER;
+END;
+
+------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_SEARCH_PRODUCTS(
+IN param_PRODUCT_NAME  VARCHAR(36),
+IN param_CATEGORY_TYPE VARCHAR(36))
+BEGIN
+	SELECT  
+		 PR.ID
+		,PR.NAME
+        ,PR.PRICE
+        ,PR.DESCRIPTION
+        ,CT.TYPE
+        ,IM.IMAGE_NAME
+	FROM b97452_proyecto2_if4101.tb_products PR
+		JOIN b97452_proyecto2_if4101.tb_category CT
+			ON PR.ID_CATEGORY = CT.ID
+			JOIN b97452_proyecto2_if4101.tb_image IM
+				ON PR.ID_IMAGE = IM.ID
+	WHERE PR.NAME LIKE CONCAT('%', param_PRODUCT_NAME , '%') AND CT.TYPE = param_CATEGORY_TYPE
+	ORDER BY PR.ID ASC;
+END;
+
+---------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_PRODUCTS_BY_PRICE_ASC()
+BEGIN
+	SELECT  
+		 PR.ID
+		,PR.NAME
+        ,PR.PRICE
+        ,PR.DESCRIPTION
+        ,CT.TYPE
+        ,IM.IMAGE_NAME
+	FROM b97452_proyecto2_if4101.tb_products PR
+		JOIN b97452_proyecto2_if4101.tb_category CT
+			ON PR.ID_CATEGORY = CT.ID
+			JOIN b97452_proyecto2_if4101.tb_image IM
+				ON PR.ID_IMAGE = IM.ID
+	ORDER BY PR.PRICE ASC;
+END;
+
+-------------------------------------------
+
+
