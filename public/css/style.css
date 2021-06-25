@@ -124,6 +124,11 @@ body {
     border-radius: 0.8em;
   }
 
+  .container__cmbx {
+    width: 30% !important;
+    left: 67% !important;
+  }
+
   .form__sign-in{
     width: 75%;
   }

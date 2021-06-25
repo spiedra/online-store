@@ -573,4 +573,21 @@ END;
 
 -------------------------------------------
 
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_PRODUCTS_BY_PRICE_DESC()
+BEGIN
+	SELECT  
+		 PR.ID
+		,PR.NAME
+        ,PR.PRICE
+        ,PR.DESCRIPTION
+        ,CT.TYPE
+        ,IM.IMAGE_NAME
+	FROM b97452_proyecto2_if4101.tb_products PR
+		JOIN b97452_proyecto2_if4101.tb_category CT
+			ON PR.ID_CATEGORY = CT.ID
+			JOIN b97452_proyecto2_if4101.tb_image IM
+				ON PR.ID_IMAGE = IM.ID
+	ORDER BY PR.PRICE DESC;
+END
 

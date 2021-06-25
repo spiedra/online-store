@@ -61,4 +61,13 @@ class ProductController
     {
         $this->view->show("productRegisterView.php", $this->categoryController->getAllCategories());
     }
+
+    public function getProductsBySort()
+    {
+        if($_POST['sortType'] == "Lower cost"){
+            echo json_encode($this->productModel->getProductsAscByPrice());
+        }else{
+            echo json_encode($this->productModel->getProductsDescByPrice());
+        }
+    }
 }

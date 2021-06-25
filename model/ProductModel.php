@@ -38,6 +38,24 @@ class ProductModel
         return ConnectorApi::useHttpGetApi("3");
     }
 
+    public function getProductsAscByPrice()
+    {
+        $query = $this->database->prepare("call sp_GET_PRODUCTS_BY_PRICE_ASC");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+
+    public function getProductsDescByPrice()
+    {
+        $query = $this->database->prepare("call sp_GET_PRODUCTS_BY_PRICE_DESC");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+
     public function saveImageProduct()
     {
         $folderPath = "public/assets/";

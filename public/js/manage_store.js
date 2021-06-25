@@ -1,6 +1,5 @@
 $(document).ready(function () {
     getAllFavProducts();
-    createListnersSearchBtn();
 });
 
 function getAllFavProducts() {
@@ -36,6 +35,25 @@ function getProductsSearched() {
         }
     });
 }
+
+function getProductsBySort(type) {
+    initMainElements();
+    $.ajax({
+        url: '?controller=Product&action=getProductsBySort',
+        type: 'POST',
+        data: {
+            sortType: type,
+        },
+        dataType: 'json',
+        success: function (response) {
+            response.forEach(element => {
+                setElementParameters(element);
+            });
+            createListenerButton();
+        }
+    });
+}
+
 
 function createListenerButton() {
     $(".btn-shopping-cart").click(function () {
@@ -151,6 +169,11 @@ function createListenerButton() {
     $("#btnQuitSearch").click(function () {
         cleaningSettings();
         getAllFavProducts();
+    });
+
+    $("#sortSelect").change(function () {
+        cleaningSettings();
+        getProductsBySort($(this).val());
     });
 }
 
