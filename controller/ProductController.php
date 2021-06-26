@@ -57,9 +57,14 @@ class ProductController
         return $this->categoryController->getAllCategories();
     }
 
-    public function showProductRegisterView()
+    public function getProductsPromotionByDate()
     {
-        $this->view->show("productRegisterView.php", $this->categoryController->getAllCategories());
+        echo json_encode($this->productModel->getProductsPromotionByDate());
+    }
+
+    public function insertProductLike()
+    {
+        echo json_encode($this->productModel->insertProductLike($_POST['productId']));
     }
 
     public function getProductsBySort()
@@ -69,5 +74,10 @@ class ProductController
         }else{
             echo json_encode($this->productModel->getProductsDescByPrice());
         }
+    }
+
+    public function showProductRegisterView()
+    {
+        $this->view->show("productRegisterView.php", $this->categoryController->getAllCategories());
     }
 }

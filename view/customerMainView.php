@@ -80,7 +80,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="btnQuitSearch" type="button" class="btn btn-primary" >Quit search</button>
+                        <button id="btnQuitSearch" type="button" class="btn btn-primary">Quit search</button>
                         <button id="btn_search" type="button" class="btn btn-primary">Search</button>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="btn_direct_purchase" type="submit"data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#directcheckOutModal" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
+                        <button id="btn_direct_purchase" type="submit" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#directcheckOutModal" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
@@ -275,7 +275,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#shoppingCartModal" data-bs-dismiss="modal">Go back</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#shoppingCartModal" data-bs-dismiss="modal">Go back</button>
                     </div>
                 </div>
             </div>
@@ -307,7 +307,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-toggle="modal" data-bs-target="#purchaseHistory" data-bs-dismiss="modal">Go back</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#purchaseHistory" data-bs-dismiss="modal">Go back</button>
                     </div>
                 </div>
             </div>

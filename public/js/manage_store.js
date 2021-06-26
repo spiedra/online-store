@@ -12,7 +12,7 @@ function getAllFavProducts() {
             response.forEach(element => {
                 setElementParameters(element);
             });
-            createListenerButton();
+            getProductPromotions();
         }
     });
 }
@@ -49,11 +49,27 @@ function getProductsBySort(type) {
             response.forEach(element => {
                 setElementParameters(element);
             });
-            createListenerButton();
+            getProductPromotions();
         }
     });
 }
 
+function getProductPromotions() {
+    initMainElementsPromo();
+    $.ajax({
+        url: '?controller=Product&action=getProductsPromotionByDate',
+        type: 'get',
+        dataType: 'json',
+        success: function (response) {
+            response.forEach(element => {
+                setElementParametersPromo(element);
+            });
+            $("button").off("click");
+            createListenerModals();
+            createListenerButton();
+        }
+    });
+}
 
 function createListenerButton() {
     $(".btn-shopping-cart").click(function () {
@@ -61,12 +77,18 @@ function createListenerButton() {
     });
 
     $(".btn-fav").click(function () {
-        $(this).toggleClass("btn-warning btn-danger");
-        if ($(this).hasClass("btn-danger")) {
-            alert("hola");
-        } else {
-            alert("f");
-        }
+        var id = $(this).attr('id');
+        $.ajax({
+            url: '?controller=Product&action=insertProductLike',
+            type: 'POST',
+            data: {
+                productId: $(this).attr('id'),
+            },
+            dataType: 'json',
+            success: function (response) {
+                $('#' + 'lblLike' + id).html("Likes: " + response[0]['NUMBER_LIKES'])
+            }
+        });
     });
 
     $(".btn-buy").click(function () {
@@ -180,5 +202,6 @@ function createListenerButton() {
 function cleaningSettings() {
     $("button").off("click");
     section.remove();
+    sectionPromo.remove();
     createListenerModals();
 }

@@ -11,6 +11,10 @@
   width: 100%;
 }
 
+.label__cost-before {
+  text-decoration: line-through;
+}
+
 .btn-delete-cart {
   margin-top: 1.5em;
 }
@@ -58,13 +62,18 @@
   object-fit: contain;
 }
 
+.btn-fav:hover{
+  background-color: brown !important;
+  border-color: brown !important;
+}
+
+.btn-fav:focus{
+  border-color: brown !important;
+}
+
 .article__second-row {
   text-align: left;
   margin: 1em 1em;
-}
-
-.label__cost-before {
-  text-decoration: line-through;
 }
 
 .secod-row__input {
@@ -94,6 +103,13 @@
   outline: none;
   border: none;
   cursor: pointer;
+}
+
+.lola{
+  width: 100% !important;
+  /* width: 20em !important; <div */
+  padding: 1em;
+  /* background-color: black; */
 }
 
 .tour__button:hover {

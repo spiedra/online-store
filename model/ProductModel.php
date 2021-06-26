@@ -33,6 +33,15 @@ class ProductModel
         return ConnectorApi::useHttpGetApi("2");
     }
 
+    public function insertProductLike($producId)
+    {
+        $query = $this->database->prepare("call sp_INSERT_PRODUCT_LIKE('$producId')");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+
     public function getAllProductsAsync()
     {
         return ConnectorApi::useHttpGetApi("3");
@@ -50,6 +59,15 @@ class ProductModel
     public function getProductsDescByPrice()
     {
         $query = $this->database->prepare("call sp_GET_PRODUCTS_BY_PRICE_DESC");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+
+    public function getProductsPromotionByDate()
+    {
+        $query = $this->database->prepare("call sp_GET_PRODUCTS_PROMOTIONS_BY_DATE");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $query->closeCursor();

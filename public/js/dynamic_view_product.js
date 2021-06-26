@@ -1,4 +1,4 @@
-var section,
+var section, sectionPromo,
     article,
     articleMainContainer,
     articleFirstRow,
@@ -14,7 +14,9 @@ var section,
     imgShoppingCart,
     imgFav,
     imgBuy,
-    mainTittle, productClicked, amountProductsPurchased, productName, sortCmbx, containerCmbx, optionSelected, optionAsc, optionDesc;
+    mainTittle, productClicked, amountProductsPurchased,
+    productName, sortCmbx, containerCmbx, optionSelected,
+    optionAsc, optionDesc, secondTitle, containerSecondTitle, lblDiscontedPrice, lblLike;
 
 function initMainElements() {
     section = document.createElement('section');
@@ -28,7 +30,7 @@ function initMainElements() {
     modifySection();
     modifyMainTittle();
     modifySortCmbx();
-    modifyArticle();
+    modifyArticle(section);
 }
 
 function initElements() {
@@ -47,6 +49,39 @@ function initElements() {
     imgFav = document.createElement('img');
     imgBuy = document.createElement('img');
     productName = document.createElement('h5');
+    lblDiscontedPrice = document.createElement('label');
+    lblLike = document.createElement('label');
+}
+
+function initMainElementsPromo() {
+    sectionPromo = document.createElement('section');
+    article = document.createElement('article');
+    containerSecondTitle = document.createElement('div');
+    secondTitle = document.createElement('h2');
+
+    modifySectionPromotion();
+    modifyArticle(sectionPromo);
+}
+
+function setElementParametersPromo(element) {
+    initElements();
+    modifyArticleMaincontainer();
+    modifyArticleFirstRow();
+    modifyImageArticle("public/assets/" + element['IMAGE_NAME'], "Icon " + element['IMAGE_NAME']);
+    modifyArticleSecondRow();
+    modifySecondRowDescription();
+    modifyArticleProductName(element['NAME']);
+    modifyArticleDescription(element['DESCRIPTION']);
+
+    modifyLabelPrice(element['PRICE'], "label__cost-before");
+    modifyDiscountedPriceLbl(element['DISCOUNTED_PRICE']);
+    modifyLblLike(element['NUMBER_LIKES'], element['ID']) 
+    modifySecondRowInput();
+    createButton(element['ID']);
+    modifyBtnImages(imgShoppingCart, "public/assets/add_shopping_cart_black_24dp.svg", "Icon shopping cart", btnShoppingCart);
+    modifyBtnImages(imgFav, "public/assets/favorite_border_black_24dp.svg", "Icon heard", btnFavorite);
+    modifyBtnImages(imgBuy, "public/assets/sell_black_24dp.svg", "Icon sell", btnBuy);
+    document.getElementById('mainCustomerView').appendChild(sectionPromo);
 }
 
 function setElementParameters(element) {
@@ -58,7 +93,14 @@ function setElementParameters(element) {
     modifySecondRowDescription();
     modifyArticleProductName(element['NAME']);
     modifyArticleDescription(element['DESCRIPTION']);
-    modifyLabelPrice(element['PRICE']);
+
+    if (element['DISCOUNTED_PRICE'] !== undefined) {
+        modifyLabelPrice(element['PRICE'], "label__cost-before");
+        modifyDiscountedPriceLbl(element['DISCOUNTED_PRICE']);
+    }else{
+        modifyLabelPrice(element['PRICE'], "label__cost-after");
+    }
+    modifyLblLike(element['NUMBER_LIKES'], element['ID']) 
     modifySecondRowInput();
     createButton(element['ID']);
     modifyBtnImages(imgShoppingCart, "public/assets/add_shopping_cart_black_24dp.svg", "Icon shopping cart", btnShoppingCart);
@@ -83,9 +125,9 @@ function modifySection() {
     setAttributeToElement(section, "class", "main-section__tours");
 }
 
-function modifyArticle() {
+function modifyArticle(element) {
     setAttributeToElement(article, "class", "section-tour__article");
-    addChildToElement(section, article);
+    addChildToElement(element, article);
 }
 
 function modifyMainTittle() {
@@ -154,9 +196,9 @@ function modifyArticleDescription(description) {
     addChildToElement(secondRowDescription, articleDescription);
 }
 
-function modifyLabelPrice(price) {
-    setAttributeToElement(lblPrice, "class", "label__cost-after");
-    lblPrice.appendChild(addTextNode("Price: " + price));
+function modifyLabelPrice(price, msjClass) {
+    setAttributeToElement(lblPrice, "class", msjClass);
+    lblPrice.appendChild(addTextNode(price+"$"));
     addChildToElement(secondRowDescription, lblPrice);
 }
 
@@ -189,4 +231,36 @@ function modifyBtnImages(element, imagePath, imageAlt, btnParent) {
     setAttributeToElement(element, "alt", imageAlt);
     addChildToElement(btnParent, element);
     addChildToElement(secondRowInput, btnParent);
+}
+
+function modifyLblLike(likes, idProduct) {
+    setAttributeToElement(lblLike, "id", "lblLike"+idProduct);
+    setAttributeToElement(lblLike, "class", "d-block mt-3");
+    lblLike.appendChild(addTextNode("Likes: " + likes));
+    addChildToElement(secondRowDescription, lblLike);
+}
+
+// Promotions
+
+function modifySectionPromotion() {
+    setAttributeToElement(sectionPromo, "class", "main-section__tours");
+    modifySecondTitleContainer();
+}
+
+function modifySecondTitleContainer() {
+    setAttributeToElement(containerSecondTitle, "class", "container-fluid d-flex justify-content-center bg-warning");
+    addChildToElement(sectionPromo, containerSecondTitle);
+    modifySecondTitle();
+}
+
+function modifySecondTitle() {
+    setAttributeToElement(secondTitle, "class", "h2");
+    secondTitle.appendChild(addTextNode("Promotions"));
+    addChildToElement(containerSecondTitle, secondTitle);
+}
+
+function modifyDiscountedPriceLbl(price) {
+    setAttributeToElement(lblDiscontedPrice, "class", "label__cost-after container d-inline ml-1");
+    lblDiscontedPrice.appendChild(addTextNode(price+"$"));
+    addChildToElement(secondRowDescription, lblDiscontedPrice);
 }
