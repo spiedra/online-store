@@ -11,7 +11,7 @@ class PromotionModel
         $this->database = SPDO::singleton();
     }
 
-    public function createPromotion($productName, $discountPrice, $startDate, $endDate)
+    public function CreatePromotionApi($productName, $discountPrice, $startDate, $endDate)
     {
         $query = $this->database->prepare("call sp_INSERT_PRODUCT_PROMOTION(:param_NAME_PRODUCT
         , :param_DISCOUNTED_PRICE
@@ -28,7 +28,7 @@ class PromotionModel
         return $result['@out_RETURN'];
     }
 
-    public function getHistoryPromotionByProduct($param_PRODUCT_ID)
+    public function GetHistoryPromotionByProductApi($param_PRODUCT_ID)
     {
         $query = $this->database->prepare("call sp_GET_HISTORY_PROMOTIONS('$param_PRODUCT_ID')");
         $query->execute();

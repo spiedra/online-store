@@ -8,7 +8,7 @@ class OnlineStoreController
         require 'models/CategoryModel.php';
 
         $categoryModel = new CategoryModel();
-        $response = $categoryModel->getAllCategories();
+        $response = $categoryModel->GetAllCategoriesApi();
         http_response_code(200);
         echo json_encode($response);
         exit();
@@ -20,7 +20,7 @@ class OnlineStoreController
         require 'models/ProductModel.php';
         $productModel = new ProductModel();
 
-        $response = $productModel->getAllProducts();
+        $response = $productModel->GetAllProductsApi();
         http_response_code(200);
         echo json_encode($response);
         exit();
@@ -32,7 +32,7 @@ class OnlineStoreController
         require 'models/ProductModel.php';
         $productModel = new ProductModel();
 
-        $response = $productModel->getAllProducts();
+        $response = $productModel->GetAllProductsPromotionApi();
         http_response_code(200);
         echo json_encode($response);
         exit();
@@ -44,7 +44,7 @@ class OnlineStoreController
         require 'models/AdminModel.php';
 
         $adminModel = new AdminModel();
-        $response = $adminModel->registerAdmin($_POST['userNameAdmin'], $_POST['passwordAdmin']);
+        $response = $adminModel->RegisterAdminApi($_POST['userNameAdmin'], $_POST['passwordAdmin']);
 
         if ($response == 1) {
             http_response_code(200);
@@ -56,13 +56,46 @@ class OnlineStoreController
         exit();
     }
 
+    public static function GetOrderHeaderDetails()
+    {
+        require 'libsApi/configuration.php';
+        require 'models/ReportModel.php';
+        $reportModel = new ReportModel();
+        $response = $reportModel->GetDetailsProductsSoldApi($_POST['orderHeaderId']);
+        http_response_code(200);
+        echo json_encode($response);
+        exit();
+    }
+
+    public static function GetAllProductsSold()
+    {
+        require 'libsApi/configuration.php';
+        require 'models/ReportModel.php';
+        $reportModel = new ReportModel();
+        $response = $reportModel->GetAllProductsSoldApi();
+        http_response_code(200);
+        echo json_encode($response);
+        exit();
+    }
+
+    public static function GetOrderHeaderSearch()
+    {
+        require 'libsApi/configuration.php';
+        require 'models/ReportModel.php';
+        $reportModel = new ReportModel();
+        $response = $reportModel->GetProductsSoldSearchApi($_POST['startDate'], $_POST['endDate']);
+        http_response_code(200);
+        echo json_encode($response);
+        exit();
+    }
+
     public static function RegisterCustomer()
     {
         require 'libsApi/configuration.php';
         require 'models/CustomerModel.php';
 
         $customerModel = new CustomerModel();
-        $response = $customerModel->registerCustomer(
+        $response = $customerModel->RegisterCustomerApi(
             $_POST['userNameCustomer'],
             $_POST['passwordCustomer'],
             $_POST['firstName'],
@@ -91,7 +124,7 @@ class OnlineStoreController
         require 'models/SessionModel.php';
 
         $sessionModel = new SessionModel();
-        $response = $sessionModel->validateSession($_POST['userName'], $_POST['password']);
+        $response = $sessionModel->ValidateSessionApi($_POST['userName'], $_POST['password']);
         if ($response == 1) {
             http_response_code(200);
             echo json_encode($response);
@@ -110,7 +143,7 @@ class OnlineStoreController
         require 'libsApi/configuration.php';
         require 'models/ProductModel.php';
         $productMododel = new ProductModel();
-        $response = $productMododel->registerProduct(
+        $response = $productMododel->RegisterProductApi(
             $_POST['nameProduct'],
             $_POST['priceProduct'],
             $_POST['descriptionProduct'],
@@ -134,7 +167,7 @@ class OnlineStoreController
         require 'model/CategoryModel.php';
 
         $categoryModel = new CategoryModel();
-        $response = $categoryModel->registerCategory($_POST['categoryType']);
+        $response = $categoryModel->RegisterCategoryApi($_POST['categoryType']);
         if ($response == 1) {
             http_response_code(200);
             echo json_encode($response);
@@ -151,7 +184,7 @@ class OnlineStoreController
         require 'models/PromotionModel.php';
 
         $promotionModel = new PromotionModel();
-        $response = $promotionModel->getHistoryPromotionByProduct($_POST['productId']);
+        $response = $promotionModel->GetHistoryPromotionByProductApi($_POST['productId']);
         http_response_code(200);
         echo json_encode($response);
         exit();
@@ -163,7 +196,7 @@ class OnlineStoreController
         require 'models/PromotionModel.php';
 
         $promotionModel = new PromotionModel();
-        $response = $promotionModel->createPromotion(
+        $response = $promotionModel->CreatePromotionApi(
             $_POST['productName'],
             $_POST['discountedPrice'],
             $_POST['starDate'],

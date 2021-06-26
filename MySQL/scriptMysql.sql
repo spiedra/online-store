@@ -305,7 +305,7 @@ BEGIN
                        JOIN b97452_proyecto2_if4101.tb_image IM
 								ON PR.ID_IMAGE = IM.ID
 		WHERE PP.ID_PRODUCT IS NULL OR PP.ID_PROMOTION IS NULL OR PP.IS_ACTIVE = 0
-        ORDER BY PR.NUMBER_LIKES;
+        ORDER BY PR.NUMBER_LIKES DESC;
 END;
 
 ----------------------------------------
@@ -446,7 +446,7 @@ BEGIN
 	DECLARE local_USER_ID INT;
     SET local_USER_ID = (SELECT ID FROM b97452_proyecto2_if4101.tb_users WHERE USER_NAME = param_USER_NAME);
 	DELETE FROM b97452_proyecto2_if4101.tb_USER_PRODUCT
-	WHERE ID_USER = local_USER_ID AND ID_PRODUCT = param_ID_PRODUCT;
+	WHERE ID_USER = local_USER_ID AND ID_PRODUCT = param_ID_PRODUCT AND IS_PURCHASED = 0;
 END;
 
 ----------------------------------------------
@@ -667,3 +667,54 @@ BEGIN
 	FROM B97452_PROYECTO2_IF4101.tb_PRODUCTS
     WHERE ID = param_ID_PRODUCT;
 END
+
+-------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_REPORT_SALES()
+BEGIN
+	SELECT 
+		ID,
+        ID_USER,
+        TOTAL,
+        MODIFIED_DATE
+    FROM b97452_proyecto2_if4101.tb_order_header;
+END
+
+-------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_REPORT_SALES_DETAILS(
+IN param_ID_ORDER_HEADER INT)
+BEGIN
+    SELECT 
+	P.NAME,
+    p.PRICE,
+    UP.TOTAL_DETAIL,
+    SUM(UP.AMOUNT_PRODUCTS) as amount_products,
+    U.USER_NAME
+    FROM b97452_proyecto2_if4101.tb_user_product UP
+		JOIN b97452_proyecto2_if4101.tb_products P
+			ON UP.ID_PRODUCT = P.ID
+            JOIN b97452_proyecto2_if4101.tb_users U
+				ON U.ID = UP.ID_USER
+    WHERE UP.IS_PURCHASED = 1 AND UP.ID_ORDER_HEADER = param_ID_ORDER_HEADER
+    GROUP BY P.NAME, UP.ID_ORDER_HEADER;
+END;
+
+-------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_REPORT_SALES_SEARCH(
+IN param_START_DATE datetime,
+IN param_END_DATE   datetime)
+BEGIN
+  	SELECT 
+		ID,
+        ID_USER,
+        TOTAL,
+        MODIFIED_DATE
+    FROM b97452_proyecto2_if4101.tb_order_header
+	WHERE MODIFIED_DATE >= param_START_DATE AND MODIFIED_DATE <= param_END_DATE;
+END;
+

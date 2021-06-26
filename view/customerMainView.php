@@ -294,7 +294,7 @@
                                     <table id="example" class="table table-bordered table-responsive">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th scope="col">Name</th>
+                                                <th scope="col">Product name</th>
                                                 <th scope="col">Unit price</th>
                                                 <th scope="col">Total detail</th>
                                                 <th scope="col">Amount products</th>

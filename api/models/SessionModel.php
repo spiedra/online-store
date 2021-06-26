@@ -9,7 +9,7 @@ class SessionModel {
         $this->database = SPDO::singleton();
     }
 
-    public function validateSession($userName, $password) {
+    public function ValidateSessionApi($userName, $password) {
         $query = $this->database->prepare("call sp_VALIDATE_USER(:param_USER_NAME, :param_PASSWORD, @out_RETURN)");
         $query->bindParam(':param_USER_NAME', $userName); 
         $query->bindParam(':param_PASSWORD', $password); 

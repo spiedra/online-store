@@ -51,7 +51,7 @@
                             <a href="?controller=Promotion&action=showPromotionView" class="nav-link text-dark">Create promotions</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-dark">Report</a>
+                            <a href="?controller=Report&action=showReportView" class="nav-link text-dark">Report</a>
                         </li>
                     </ul>
                 </div>

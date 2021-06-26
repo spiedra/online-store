@@ -94,7 +94,7 @@ function setElementParameters(element) {
     modifyArticleProductName(element['NAME']);
     modifyArticleDescription(element['DESCRIPTION']);
 
-    if (element['DISCOUNTED_PRICE'] !== undefined) {
+    if (element['DISCOUNTED_PRICE'] !== undefined && element['DISCOUNTED_PRICE'] !== null) {
         modifyLabelPrice(element['PRICE'], "label__cost-before");
         modifyDiscountedPriceLbl(element['DISCOUNTED_PRICE']);
     }else{

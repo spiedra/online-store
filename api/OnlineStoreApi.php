@@ -6,8 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         OnlineStoreController::GetAllCategories();
     } else if (isset($_GET['getCase']) && $_GET['getCase']  == 2) {
         OnlineStoreController::GetAllProducts();
-    }else if (isset($_GET['getCase']) && $_GET['getCase']  == 3) {
+    } else if (isset($_GET['getCase']) && $_GET['getCase']  == 3) {
         OnlineStoreController::GetAllProducts();
+    } else if (isset($_GET['getCase']) && $_GET['getCase']  == 4) {
+        OnlineStoreController::GetAllProductsSold();
     }
 }
 
@@ -24,8 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         OnlineStoreController::GetHistoryPromotionByProduct();
     } else if (isset($_POST['productName'], $_POST['discountedPrice'], $_POST['starDate'], $_POST['endDate'])) {
         OnlineStoreController::CreatePromotion();
-    }elseif (isset($_POST['userNameCustomer'], $_POST['passwordCustomer'], $_POST['firstName'], $_POST['lastName'], $_POST['dateBirth'], $_POST['address'])) {
+    } else if (isset($_POST['userNameCustomer'], $_POST['passwordCustomer'], $_POST['firstName'], $_POST['lastName'], $_POST['dateBirth'], $_POST['address'])) {
         OnlineStoreController::RegisterCustomer();
+    }else if (isset($_POST['orderHeaderId'])) {
+        OnlineStoreController::GetOrderHeaderDetails();
+    }else if (isset($_POST['startDate'], $_POST['endDate'])) {
+        OnlineStoreController::GetOrderHeaderSearch();
     }
 }
 

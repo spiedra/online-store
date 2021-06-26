@@ -9,7 +9,7 @@ class AdminModel {
         $this->database = SPDO::singleton();
     }
 
-    public function registerAdmin($userNameAdmin, $passwordAdmin) {
+    public function RegisterAdminApi($userNameAdmin, $passwordAdmin) {
         $query = $this->database->prepare("call sp_REGISTER_ADMIN(:param_USER_NAME, :param_PASSWORD, @out_RETURN)");
         $query->bindParam(':param_USER_NAME', $userNameAdmin); 
         $query->bindParam(':param_PASSWORD', $passwordAdmin); 

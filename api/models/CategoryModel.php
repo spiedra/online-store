@@ -9,7 +9,7 @@ class CategoryModel {
         $this->database = SPDO::singleton();
     }
 
-    public function registerCategory($categoryType){
+    public function RegisterCategoryApi($categoryType){
         $query = $this->database->prepare("call sp_REGISTER_CATEGORY(:param_TYPE, @out_RETURN)");
         $query->bindParam(':param_TYPE', $categoryType); 
         $query->execute();
@@ -18,7 +18,7 @@ class CategoryModel {
         return $result['@out_RETURN'];
     }
 
-    public function getAllCategories() {
+    public function GetAllCategoriesApi() {
         $query = $this->database->prepare("call b97452_proyecto2_if4101.sp_GET_ALL_CATEGORIES()");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);

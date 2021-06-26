@@ -9,7 +9,7 @@ class ProductModel {
         $this->database = SPDO::singleton();
     }
 
-    public function getAllProducts()
+    public function GetAllProductsApi()
     {
         $query = $this->database->prepare("call sp_GET_ALL_PRODUCTS()");
         $query->execute();
@@ -18,7 +18,7 @@ class ProductModel {
         return $result;
     }
 
-    public function getAllProductsPromotion()
+    public function GetAllProductsPromotionApi()
     {
         $query = $this->database->prepare("call sp_GET_ALL_PRODUCTS_PROMOTION()");
         $query->execute();
@@ -27,7 +27,7 @@ class ProductModel {
         return $result;
     }
 
-    public function registerProduct($name, $price, $description, $category, $image) {
+    public function RegisterProductApi($name, $price, $description, $category, $image) {
         $query = $this->database->prepare("call sp_REGISTER_PRODUCT(:param_NAME, :param_PRICE
         , :param_DESCRIPTION, :param_CATEGORY, :param_IMAGE, @out_RETURN)");
         $query->bindParam(':param_NAME', $name); 

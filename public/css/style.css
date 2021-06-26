@@ -11,6 +11,14 @@ body {
   border-radius: 0.5em;
 }
 
+#btn__search--sales{
+  background-color: rgba(204, 204, 204, 0.959);
+}
+
+#btn__search--sales:hover{
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+}
+
 .container-percentage {
   display: flex;
   flex-flow: row nowrap;

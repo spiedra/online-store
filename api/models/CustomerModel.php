@@ -11,7 +11,7 @@ class CustomerModel
         $this->database = SPDO::singleton();
     }
 
-    public function registerCustomer($userNameCustomer, $passwordCustomer, $firstName, $lastName, $dateBirth, $address)
+    public function RegisterCustomerApi($userNameCustomer, $passwordCustomer, $firstName, $lastName, $dateBirth, $address)
     {
         $query = $this->database->prepare("call sp_REGISTER_CUSTOMER(:param_USER_NAME
             , :param_PASSWORD
