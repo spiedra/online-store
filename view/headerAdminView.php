@@ -36,9 +36,6 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                     <li class="nav-item">
-                        <a href="?controller=Category&action=showCategoryRegisterView" class="dropdown-item text-dark">Create category</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="?controller=Promotion&action=showPromotionView" class="dropdown-item text-dark">Create promotions</a>
                     </li>
                 </ul>
@@ -52,7 +49,7 @@
                         <a href="?controller=Category&action=showCategoryRegisterView" class="dropdown-item text-dark">Create category</a>
                     </li>
                     <li class="nav-item">
-                        <a href="?controller=Promotion&action=showPromotionView" class="dropdown-item text-dark">Create promotions</a>
+                        <a href="?controller=Promotion&action=showPromotionView" class="dropdown-item text-dark">Manage category</a>
                     </li>
                 </ul>
             </div>
