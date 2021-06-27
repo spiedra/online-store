@@ -39,10 +39,10 @@
                             ?>
                                 <tr>
                                     <td class="adminId fw-bold" scope="row"><?php echo $data['ID'] ?></td>
-                                    <td class="adminUserName"><?php echo $data['USER_NAME'] ?></td>
+                                    <td id="<?php echo "tdManageAdmin".$data['ID'] ?>" class="adminUserName"><?php echo $data['USER_NAME'] ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-primary my-1 btn-update--admin"><i class="fas fa-cog fa-lg"></i></button>
-                                        <button type="button" class="btn btn-danger btn-delete--admin" data-bs-toggle="modal" data-bs-target="#"><i class="fas fa-trash-alt fa-lg"></i></button>
+                                        <button type="button" class="btn btn-primary my-1 btn-update--admin" data-bs-toggle="modal" data-bs-target="#updateAdminModal"><i class="fas fa-cog fa-lg"></i></button>
+                                        <button type="button" class="btn btn-danger btn-delete--admin"><i class="fas fa-trash-alt fa-lg"></i></button>
                                     </td>
                                 </tr>
                             <?php
@@ -53,8 +53,32 @@
                 </div>
             </div>
         </div>
-
-
+        <div class="modal fade" id="updateAdminModal" tabindex="-1" aria-labelledby="updateAdminModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Admin update</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST">
+                            <div class="container">
+                                <label class="mt-2 mb-2">ID</label>
+                                <input id="adminId" class="form-control" type="text" name="" placeholder="" disabled>
+                            </div>
+                            <div class="container">
+                                <label class="mt-2 mb-2">User name</label>
+                                <input id="adminUserName" class="form-control" type="text" name="" placeholder="" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="btn-update" type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>

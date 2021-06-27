@@ -30,6 +30,11 @@ class AdminController
         return $this->adminModel->getAllAdmin();
     }
 
+    public function updateAdmin()
+    {
+        echo json_encode($this->adminModel->updateAdmin($_POST['adminId'], $_POST['newUserName']));
+    }
+
     public function deleteAdmin()
     {
         echo $this->adminModel->deleteAdmin($_POST['adminId']);

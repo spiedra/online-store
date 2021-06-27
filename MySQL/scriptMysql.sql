@@ -740,3 +740,26 @@ BEGIN
     WHERE ID = param_ADMIN_ID;
 END;
 
+-------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_UPDATE_ADMIN(
+IN param_ADMIN_ID INT,
+IN param_USER_NAME VARCHAR(36))
+BEGIN
+	UPDATE b97452_proyecto2_if4101.tb_users
+		SET USER_NAME = param_USER_NAME
+	WHERE ID = param_ADMIN_ID;
+    
+	SELECT ID, USER_NAME FROM b97452_proyecto2_if4101.tb_users WHERE ID = param_ADMIN_ID;
+END;
+
+-------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_DELETE_PRODUCT(
+IN param_PRODUCT_ID INT)
+BEGIN
+	-- DELETE FROM 
+END;
+

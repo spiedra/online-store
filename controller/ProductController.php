@@ -76,6 +76,16 @@ class ProductController
         }
     }
 
+    public function deleteProduct()
+    {
+        echo json_encode($this->productModel->deleteProduct($_POST['productId']));
+    }
+
+    public function showProductManageView()
+    {
+        $this->view->show("productManageView.php", $this->getAllProducts());
+    }
+
     public function showProductRegisterView()
     {
         $this->view->show("productRegisterView.php", $this->categoryController->getAllCategories());

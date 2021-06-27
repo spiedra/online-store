@@ -75,6 +75,14 @@ class ProductModel
         return  ConnApiBccr::appendExchangeRate($result);
     }
 
+    public function deleteProduct($productId)
+    {
+        $query = $this->database->prepare("call sp_DELETE_ADMIN('$productId')");
+        $query->execute();
+        $query->closeCursor();
+        return "Product successfully removed";
+    }
+
     public function saveImageProduct()
     {
         $folderPath = "public/assets/";

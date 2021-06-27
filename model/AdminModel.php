@@ -18,6 +18,15 @@ class AdminModel
         ));
     }
 
+    public function updateAdmin($adminId, $newUserName)
+    {
+        $query = $this->database->prepare("call sp_UPDATE_ADMIN('$adminId', '$newUserName')");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+
     public function deleteAdmin($adminId)
     {
         $query = $this->database->prepare("call sp_DELETE_ADMIN('$adminId')");

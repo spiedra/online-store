@@ -1,14 +1,12 @@
-var adminUserName, adminId;
-
 $(document).ready(function () {
     createListeners();
 });
 
 function createListeners() {
-    $(".btn-delete--admin").click(function () {
+    $(".btn-delete--product").click(function () {
         var trid = $(this).closest('tr');
         $.ajax({
-            url: '?controller=Admin&action=deleteAdmin',
+            url: '?controller=Product&action=deleteProduct',
             type: 'POST',
             data: {
                 adminId: $(this).closest('tr').children('td.adminId').text(),
@@ -21,7 +19,7 @@ function createListeners() {
         });
     });
 
-    $(".btn-update--admin").click(function () {
+    $(".btn-update--product").click(function () {
         adminUserName = $(this).closest('tr').children('td.adminUserName').text();
         adminId = $(this).closest('tr').children('td.adminId').text();
         $('#adminId').val(adminId)
