@@ -18,6 +18,20 @@ class AdminModel {
         $query->closeCursor();
         return $result['@out_RETURN'];
     }
-}
 
-?>
+    public function DeleteAdminApi($adminId)
+    {
+        $query = $this->database->prepare("call sp_DELETE_ADMIN('$adminId')");
+        $query->execute();
+        $query->closeCursor();
+    }
+
+    public function getAllAdminsApi()
+    {
+        $query = $this->database->prepare("call sp_GET_ALL_ADMIN()");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+}

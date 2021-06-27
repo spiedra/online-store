@@ -718,3 +718,25 @@ BEGIN
 	WHERE MODIFIED_DATE >= param_START_DATE AND MODIFIED_DATE <= param_END_DATE;
 END;
 
+-------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_ALL_ADMIN()
+BEGIN
+  	SELECT 
+		ID,
+		USER_NAME
+    FROM b97452_proyecto2_if4101.tb_users 
+	WHERE ID_ROLE = 1;
+END;
+
+-------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_DELETE_ADMIN(
+IN param_ADMIN_ID INT)
+BEGIN
+	DELETE FROM b97452_proyecto2_if4101.tb_users
+    WHERE ID = param_ADMIN_ID;
+END;
+

@@ -13,7 +13,7 @@ class AdminController
     {
         if (strcmp($_POST['passwordAdmin'], $_POST['passwordConfirmedAdmin']) === 0) {
             if ($this->adminModel->registerAdmin() == 1) {
-                echo '<script>alert("Successfully registered)</script>';
+                echo '<script>alert("Successfully registered")</script>';
                 $this->showAdminRegisterView();
             } else {
                 echo '<script>alert("Admin is alredy registered")</script>';
@@ -23,6 +23,21 @@ class AdminController
             echo '<script>alert("Passwords do not match")</script>';
             $this->showAdminRegisterView();
         }
+    }
+
+    public function getAllAdmin()
+    {
+        return $this->adminModel->getAllAdmin();
+    }
+
+    public function deleteAdmin()
+    {
+        echo $this->adminModel->deleteAdmin($_POST['adminId']);
+    }
+
+    public function showAdminManageView()
+    {
+        $this->view->show("adminManageView.php", $this->getAllAdmin());
     }
 
     public function showAdminRegisterView()

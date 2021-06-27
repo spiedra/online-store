@@ -6,20 +6,46 @@
         <div class="container-fluid justify-content-end">
             <div class="dropdown d-none d-md-flex d-lg-flex">
                 <button class="btn btn-secondary dropdown-toggle btn-dropdow text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Register
+                    Admin
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li class="nav-item">
                         <a href="?controller=Admin&action=showAdminRegisterView" class="dropdown-item text-dark">Register admin</a>
                     </li>
                     <li class="nav-item">
-                        <a href="?controller=Product&action=showProductRegisterView" class="dropdown-item text-dark">Register products</a>
+                        <a href="?controller=Admin&action=showAdminManageView" class="dropdown-item text-dark">Manage admin</a>
                     </li>
                 </ul>
             </div>
             <div class="dropdown d-none d-md-flex d-lg-flex">
                 <button class="btn btn-secondary dropdown-toggle btn-dropdow text-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                    Create
+                    Products
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li class="nav-item">
+                        <a href="?controller=Category&action=showCategoryRegisterView" class="dropdown-item text-dark">Create category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?controller=Promotion&action=showPromotionView" class="dropdown-item text-dark">Create promotions</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown d-none d-md-flex d-lg-flex">
+                <button class="btn btn-secondary dropdown-toggle btn-dropdow text-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Promotion
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li class="nav-item">
+                        <a href="?controller=Category&action=showCategoryRegisterView" class="dropdown-item text-dark">Create category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?controller=Promotion&action=showPromotionView" class="dropdown-item text-dark">Create promotions</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown d-none d-md-flex d-lg-flex">
+                <button class="btn btn-secondary dropdown-toggle btn-dropdow text-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                     <li class="nav-item">

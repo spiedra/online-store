@@ -12,12 +12,12 @@
     <title>Online store</title>
 </head>
 
-<body class="vh-100 d-flex align-items-center justify-content-between flex-column">
+<body class="vh-100 d-flex align-items-center justify-content-between flex-column" onload="formRegisterAdmin.reset();">
     <?php
     include_once 'headerAdminView.php';
     ?>
     <main class="container-fluid h-100 d-flex align-items-center justify-content-center page-main">
-        <form class="container bg-light form__register-admin" method="POST" action="?controller=Admin&action=registerAdmin">
+        <form id="formRegisterAdmin" class="container bg-light form__register-admin" method="POST" action="?controller=Admin&action=registerAdmin">
             <div class="container">
                 <h1 class="mt-3 text-center form__tittle">Register Admin</h1>
             </div>

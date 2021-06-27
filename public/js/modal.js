@@ -111,7 +111,6 @@ function createListenerModals() {
                             trid.remove();
                         }
                     });
-
                 });
             }
         });

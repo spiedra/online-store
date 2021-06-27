@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         OnlineStoreController::GetAllProducts();
     } else if (isset($_GET['getCase']) && $_GET['getCase']  == 4) {
         OnlineStoreController::GetAllProductsSold();
+    }else if (isset($_GET['getCase']) && $_GET['getCase']  == 5) {
+        OnlineStoreController::GetAllAdmins();
     }
 }
 
@@ -38,5 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 } // PUT
 
-if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-} // DELETE    
+if($_SERVER['REQUEST_METHOD']=='DELETE'){
+   
+}   

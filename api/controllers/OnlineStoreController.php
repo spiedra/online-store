@@ -89,6 +89,19 @@ class OnlineStoreController
         exit();
     }
 
+    public static function GetAllAdmins()
+    {
+        require 'libsApi/configuration.php';
+        require 'models/AdminModel.php';
+
+        $adminModel = new AdminModel();
+        $response = $adminModel->getAllAdminsApi();
+
+        http_response_code(200);
+        echo json_encode($response);
+        exit();
+    }
+
     public static function RegisterCustomer()
     {
         require 'libsApi/configuration.php';
@@ -214,6 +227,21 @@ class OnlineStoreController
                 "Promotion successfully created"
             );
         }
+        exit();
+    }
+
+    public static function DeleteAdmin()
+    {
+        require 'libsApi/configuration.php';
+        require 'models/AdminModel.php';
+
+        $adminModel = new AdminModel();
+        $adminModel->DeleteAdminApi($_POST['adminId']);
+
+        http_response_code(200);
+        echo json_encode("
+        Admin successfully removed
+        ");
         exit();
     }
 }
