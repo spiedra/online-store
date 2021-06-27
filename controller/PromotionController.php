@@ -17,7 +17,7 @@ class PromotionController
 
     public function getAllProducts()
     {
-        return $this->productController->getAllProducts();
+        return $this->productController->getAllProductsToPromo();
     }
 
     public function getPromotionByProduct()

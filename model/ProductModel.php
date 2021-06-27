@@ -34,6 +34,12 @@ class ProductModel
         return ConnectorApi::useHttpGetApi("2");
     }
 
+
+    public function getAllProductsToPromo()
+    {
+        return ConnectorApi::useHttpGetApi("3");
+    }
+
     public function insertProductLike($producId)
     {
         $query = $this->database->prepare("call sp_INSERT_PRODUCT_LIKE('$producId')");

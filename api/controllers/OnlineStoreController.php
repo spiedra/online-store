@@ -26,6 +26,18 @@ class OnlineStoreController
         exit();
     }
 
+    public static function GetAllProductsToPromo()
+    {
+        require 'libsApi/configuration.php';
+        require 'models/ProductModel.php';
+        $productModel = new ProductModel();
+
+        $response = $productModel->GetAllProductsToPromoApi();
+        http_response_code(200);
+        echo json_encode($response);
+        exit();
+    }
+
     public static function GetAllProductsPromotion()
     {
         require 'libsApi/configuration.php';

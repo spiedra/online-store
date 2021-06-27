@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     } else if (isset($_GET['getCase']) && $_GET['getCase']  == 2) {
         OnlineStoreController::GetAllProducts();
     } else if (isset($_GET['getCase']) && $_GET['getCase']  == 3) {
-        OnlineStoreController::GetAllProducts();
+        OnlineStoreController::GetAllProductsToPromo();
     } else if (isset($_GET['getCase']) && $_GET['getCase']  == 4) {
         OnlineStoreController::GetAllProductsSold();
     }else if (isset($_GET['getCase']) && $_GET['getCase']  == 5) {

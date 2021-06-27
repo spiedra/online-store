@@ -52,6 +52,11 @@ class ProductController
         return $this->productModel->getAllProducts();
     }
 
+    public function getAllProductsToPromo()
+    {
+        return $this->productModel->getAllProductsToPromo();
+    }
+
     public function getAllCategories()
     {
         return $this->categoryController->getAllCategories();

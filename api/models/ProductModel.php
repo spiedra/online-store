@@ -18,6 +18,15 @@ class ProductModel {
         return $result;
     }
 
+    public function GetAllProductsToPromoApi()
+    {
+        $query = $this->database->prepare("call sp_GET_PRODUCTS_TO_PROMO()");
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $result;
+    }
+
     public function GetAllProductsPromotionApi()
     {
         $query = $this->database->prepare("call sp_GET_ALL_PRODUCTS_PROMOTION()");
