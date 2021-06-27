@@ -16,7 +16,7 @@ var section, sectionPromo,
     imgBuy,
     mainTittle, productClicked, amountProductsPurchased,
     productName, sortCmbx, containerCmbx, optionSelected,
-    optionAsc, optionDesc, secondTitle, containerSecondTitle, lblDiscontedPrice, lblLike;
+    optionAsc, optionDesc, secondTitle, containerSecondTitle, lblDiscontedPrice, lblLike, lblExchangeRate;
 
 function initMainElements() {
     section = document.createElement('section');
@@ -51,6 +51,7 @@ function initElements() {
     productName = document.createElement('h5');
     lblDiscontedPrice = document.createElement('label');
     lblLike = document.createElement('label');
+    lblExchangeRate = document.createElement('label');
 }
 
 function initMainElementsPromo() {
@@ -75,6 +76,7 @@ function setElementParametersPromo(element) {
 
     modifyLabelPrice(element['PRICE'], "label__cost-before");
     modifyDiscountedPriceLbl(element['DISCOUNTED_PRICE']);
+    modifyLblExchangeRate(element['DISCOUNTED_PRICE'], element['exchangeRate']);
     modifyLblLike(element['NUMBER_LIKES'], element['ID']) 
     modifySecondRowInput();
     createButton(element['ID']);
@@ -97,8 +99,10 @@ function setElementParameters(element) {
     if (element['DISCOUNTED_PRICE'] !== undefined && element['DISCOUNTED_PRICE'] !== null) {
         modifyLabelPrice(element['PRICE'], "label__cost-before");
         modifyDiscountedPriceLbl(element['DISCOUNTED_PRICE']);
+        modifyLblExchangeRate(element['DISCOUNTED_PRICE'], element['exchangeRate']);
     }else{
         modifyLabelPrice(element['PRICE'], "label__cost-after");
+        modifyLblExchangeRate(element['PRICE'], element['exchangeRate']);
     }
     modifyLblLike(element['NUMBER_LIKES'], element['ID']) 
     modifySecondRowInput();
@@ -238,6 +242,12 @@ function modifyLblLike(likes, idProduct) {
     setAttributeToElement(lblLike, "class", "d-block mt-3");
     lblLike.appendChild(addTextNode("Likes: " + likes));
     addChildToElement(secondRowDescription, lblLike);
+}
+
+function modifyLblExchangeRate($priceDollar, $exchangeRate) {
+    setAttributeToElement(lblExchangeRate, "class", "d-block mt-2");
+    lblExchangeRate.appendChild(addTextNode("Colons: " + Math.round($priceDollar * $exchangeRate) + "₡"));
+    addChildToElement(secondRowDescription, lblExchangeRate);
 }
 
 // Promotions

@@ -5,6 +5,7 @@ class ProductModel
     public function __construct()
     {
         require_once 'libs/SPDO.php';
+        require_once 'Utility/ConnApiBccr.php';
         $this->database = SPDO::singleton();
     }
 
@@ -25,7 +26,7 @@ class ProductModel
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $query->closeCursor();
-        return $result;
+        return  ConnApiBccr::appendExchangeRate($result);
     }
 
     public function getAllProducts()
@@ -44,7 +45,7 @@ class ProductModel
 
     public function getAllProductsAsync()
     {
-        return ConnectorApi::useHttpGetApi("3");
+        return ConnApiBccr::appendExchangeRate(ConnectorApi::useHttpGetApi("3"));
     }
 
     public function getProductsAscByPrice()
@@ -53,7 +54,7 @@ class ProductModel
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $query->closeCursor();
-        return $result;
+        return ConnApiBccr::appendExchangeRate($result);
     }
 
     public function getProductsDescByPrice()
@@ -62,7 +63,7 @@ class ProductModel
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $query->closeCursor();
-        return $result;
+        return ConnApiBccr::appendExchangeRate($result);
     }
 
     public function getProductsPromotionByDate()
@@ -71,7 +72,7 @@ class ProductModel
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $query->closeCursor();
-        return $result;
+        return  ConnApiBccr::appendExchangeRate($result);
     }
 
     public function saveImageProduct()

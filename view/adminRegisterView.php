@@ -8,6 +8,7 @@
     <meta name="keywords" content="store, covid, online, clean" />
     <link rel="stylesheet" href="public/css/bootstrap.min.css" />
     <link rel="stylesheet" href="public/css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <title>Online store</title>
 </head>
 

@@ -11,6 +11,7 @@ function getAllFavProducts() {
         success: function (response) {
             response.forEach(element => {
                 setElementParameters(element);
+                console.log(element)
             });
             getProductPromotions();
         }
