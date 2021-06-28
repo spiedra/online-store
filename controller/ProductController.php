@@ -16,7 +16,7 @@ class ProductController
         if ($this->validateFormatImage($_FILES['imageFile']['type'])) {
             if ($this->productModel->saveImageProduct()) {
                 if ($this->productModel->registerProduct() == 1) {
-                    echo '<script>alert("Successfully registered)</script>';
+                    echo '<script>alert("Successfully registered")</script>';
                     $this->showProductRegisterView();
                 } else {
                     echo '<script>alert("Product is alredy registered")</script>';
@@ -24,9 +24,46 @@ class ProductController
                 }
             } else {
                 echo '<script>alert("Failed to save image")</script>';
+                $this->showProductManageView();
             }
         } else {
             echo '<script>alert("Only jpeg, png, svg are accepted")</script>';
+            $this->showProductManageView();
+        }
+    }
+
+    public function updateProduct()
+    {
+        if ($_FILES['imageFile']['size'] != 0) {
+            if ($this->validateFormatImage($_FILES['imageFile']['type'])) {
+                if ($this->productModel->saveImageProduct()) {
+                    $this->productModel->updateProduct(
+                        $_POST['productId'],
+                        $_POST['nameProduct'],
+                        $_POST['priceProduct'],
+                        $_POST['descriptionProduct'],
+                        $_POST['categorySelected'],
+                        $_FILES['imageFile']['name']
+                    );
+                    $this->showProductManageView();
+                } else {
+                    echo json_encode('<script>alert("Failed to save image")</script>');
+                    $this->showProductManageView();
+                }
+            } else {
+                echo json_encode('<script>alert("Only jpeg, png, svg are accepted")</script>');
+                $this->showProductManageView();
+            }
+        } else {
+            $this->productModel->updateProduct(
+                $_POST['productId'],
+                $_POST['nameProduct'],
+                $_POST['priceProduct'],
+                $_POST['descriptionProduct'],
+                $_POST['categorySelected'],
+                'null'
+            );
+            $this->showProductManageView();
         }
     }
 
@@ -43,7 +80,7 @@ class ProductController
     }
 
     public function getProductsBySearch()
-    {   
+    {
         echo json_encode($this->productModel->getProductsBySearch($_POST['productName'], $_POST['categoryType']));
     }
 
@@ -74,9 +111,9 @@ class ProductController
 
     public function getProductsBySort()
     {
-        if($_POST['sortType'] == "Lower cost"){
+        if ($_POST['sortType'] == "Lower cost") {
             echo json_encode($this->productModel->getProductsAscByPrice());
-        }else{
+        } else {
             echo json_encode($this->productModel->getProductsDescByPrice());
         }
     }
@@ -88,7 +125,7 @@ class ProductController
 
     public function showProductManageView()
     {
-        $this->view->show("productManageView.php", $this->getAllProducts());
+        $this->view->show("productManageView.php", $this->getAllProductsToPromo());
     }
 
     public function showProductRegisterView()

@@ -20,6 +20,13 @@ class ProductModel
         ));
     }
 
+    public function updateProduct($productId, $productName, $productPrice, $description, $category, $imageName)
+    {
+        $query = $this->database->prepare("call sp_UPDATE_PRODUCT('$productId','$productName', '$productPrice','$description','$category','$imageName')");
+        $query->execute();
+        $query->closeCursor();
+    }
+
     public function getProductsBySearch($productName, $categoryType)
     {
         $query = $this->database->prepare("call sp_SEARCH_PRODUCTS('$productName', '$categoryType')");
@@ -51,7 +58,7 @@ class ProductModel
 
     public function getAllProductsAsync()
     {
-        return ConnApiBccr::appendExchangeRate(ConnectorApi::useHttpGetApi("3"));
+        return ConnApiBccr::appendExchangeRate(ConnectorApi::useHttpGetApi("2"));
     }
 
     public function getProductsAscByPrice()
@@ -83,7 +90,7 @@ class ProductModel
 
     public function deleteProduct($productId)
     {
-        $query = $this->database->prepare("call sp_DELETE_ADMIN('$productId')");
+        $query = $this->database->prepare("call sp_DELETE_PRODUCT('$productId')");
         $query->execute();
         $query->closeCursor();
         return "Product successfully removed";

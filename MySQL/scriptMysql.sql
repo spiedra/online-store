@@ -766,9 +766,14 @@ BEGIN
 	UPDATE b97452_proyecto2_if4101.tb_products
 		SET IS_DELETED = 0
 	WHERE ID = 1;
+    
+    UPDATE b97452_proyecto2_if4101.tb_products_promotion
+		SET IS_DELETED = 0
+	WHERE ID_PRODUCT = 1;
 END;
 
 -------------------------------------------------
+
 DELIMITER $$
 CREATE PROCEDURE b97452_proyecto2_if4101.sp_GET_PRODUCTS_TO_PROMO()
 BEGIN
@@ -791,5 +796,36 @@ BEGIN
 								ON PR.ID_IMAGE = IM.ID
 		WHERE PR.IS_DELETED = 0
         ORDER BY PR.NUMBER_LIKES DESC;
+END;
+
+------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE b97452_proyecto2_if4101.sp_UPDATE_PRODUCT
+(
+IN param_ID          INT,
+IN param_NAME        VARCHAR(36), 
+IN param_PRICE       DECIMAL(9, 2),
+IN param_DESCRIPTION VARCHAR(50),
+IN param_CATEGORY	 VARCHAR(36),		
+IN param_IMAGE		 VARCHAR(52))
+BEGIN
+	DECLARE local_ID_CATEGORY INT;
+	SET local_ID_CATEGORY = (SELECT ID FROM b97452_proyecto2_if4101.tb_category WHERE TYPE = param_CATEGORY);
+    
+    IF(param_IMAGE != 'null') THEN  
+		UPDATE b97452_proyecto2_if4101.tb_image IMG
+			JOIN b97452_proyecto2_if4101.tb_products P
+				ON IMG.ID = P.ID_IMAGE 
+			SET IMAGE_NAME = param_IMAGE
+	WHERE P.ID = param_ID;
+    END IF;
+    
+	UPDATE b97452_proyecto2_if4101.tb_products
+		SET NAME = param_NAME,
+			PRICE = param_PRICE,
+            DESCRIPTION = param_DESCRIPTION,
+            ID_CATEGORY = local_ID_CATEGORY
+	WHERE ID = param_ID;
 END;
 
