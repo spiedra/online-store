@@ -51,7 +51,6 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <label class="mt-2 mb-2">Total: 55.0</label>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button id="btn_showHistoryPurchase" type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#purchaseHistory">History</button>
                         <button id="btn_purchase" type="button" data-bs-dismiss="modal" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkOutModal">Go to checkout</button>
@@ -316,5 +315,5 @@
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
 <?php
-require_once 'footerView.php';
+// require_once 'footerView.php';
 ?>
