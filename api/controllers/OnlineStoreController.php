@@ -4,7 +4,7 @@ class OnlineStoreController
 {
     public static function GetAllCategories()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/CategoryModel.php';
 
         $categoryModel = new CategoryModel();
@@ -16,7 +16,7 @@ class OnlineStoreController
 
     public static function GetAllProducts()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/ProductModel.php';
         $productModel = new ProductModel();
 
@@ -28,7 +28,7 @@ class OnlineStoreController
 
     public static function GetAllProductsToPromo()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/ProductModel.php';
         $productModel = new ProductModel();
 
@@ -40,7 +40,7 @@ class OnlineStoreController
 
     public static function GetAllProductsPromotion()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/ProductModel.php';
         $productModel = new ProductModel();
 
@@ -52,7 +52,7 @@ class OnlineStoreController
 
     public static function RegisterAdmin()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/AdminModel.php';
 
         $adminModel = new AdminModel();
@@ -70,7 +70,7 @@ class OnlineStoreController
 
     public static function GetOrderHeaderDetails()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/ReportModel.php';
         $reportModel = new ReportModel();
         $response = $reportModel->GetDetailsProductsSoldApi($_POST['orderHeaderId']);
@@ -81,7 +81,7 @@ class OnlineStoreController
 
     public static function GetAllProductsSold()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/ReportModel.php';
         $reportModel = new ReportModel();
         $response = $reportModel->GetAllProductsSoldApi();
@@ -92,7 +92,7 @@ class OnlineStoreController
 
     public static function GetOrderHeaderSearch()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/ReportModel.php';
         $reportModel = new ReportModel();
         $response = $reportModel->GetProductsSoldSearchApi($_POST['startDate'], $_POST['endDate']);
@@ -103,7 +103,7 @@ class OnlineStoreController
 
     public static function GetAllAdmins()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/AdminModel.php';
 
         $adminModel = new AdminModel();
@@ -116,7 +116,7 @@ class OnlineStoreController
 
     public static function RegisterCustomer()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/CustomerModel.php';
 
         $customerModel = new CustomerModel();
@@ -145,7 +145,7 @@ class OnlineStoreController
 
     public static function ValidateSession()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/SessionModel.php';
 
         $sessionModel = new SessionModel();
@@ -165,7 +165,7 @@ class OnlineStoreController
 
     public static function RegisterProduct()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/ProductModel.php';
         $productMododel = new ProductModel();
         $response = $productMododel->RegisterProductApi(
@@ -188,7 +188,7 @@ class OnlineStoreController
 
     public static function RegisterCategory()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/CategoryModel.php';
 
         $categoryModel = new CategoryModel();
@@ -205,7 +205,7 @@ class OnlineStoreController
 
     public static function GetHistoryPromotionByProduct()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/PromotionModel.php';
 
         $promotionModel = new PromotionModel();
@@ -217,7 +217,7 @@ class OnlineStoreController
 
     public static function CreatePromotion()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/PromotionModel.php';
 
         $promotionModel = new PromotionModel();
@@ -244,7 +244,7 @@ class OnlineStoreController
 
     public static function DeleteAdmin()
     {
-        require 'libsApi/configuration.php';
+        require 'libsApi/Configuration.php';
         require 'models/AdminModel.php';
 
         $adminModel = new AdminModel();
