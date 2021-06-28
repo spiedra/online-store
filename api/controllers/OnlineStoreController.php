@@ -189,7 +189,7 @@ class OnlineStoreController
     public static function RegisterCategory()
     {
         require 'libsApi/configuration.php';
-        require 'model/CategoryModel.php';
+        require 'models/CategoryModel.php';
 
         $categoryModel = new CategoryModel();
         $response = $categoryModel->RegisterCategoryApi($_POST['categoryType']);

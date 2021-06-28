@@ -17,7 +17,7 @@
     <title>Online store</title>
 </head>
 
-<body>
+<body >
     <?php
     include_once 'headerCustomerView.php';
     ?>
@@ -316,5 +316,5 @@
     <script src="public/js/bootstrap.bundle.min.js"></script>
 </body>
 <?php
-// require_once 'footerView.php';
+require_once 'footerView.php';
 ?>

@@ -30,7 +30,7 @@ class ConnectorApi
     public static function useHttpDeleteApi($dataArray)
     {
         $url = "http://localhost/TiendaEnLineaJuanCarlosSequeiraSemestreIAnno2021/api/onlineStoreApi.php";
-        // $data = http_build_query($dataArray);
+        $data = http_build_query($dataArray);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($dataArray));

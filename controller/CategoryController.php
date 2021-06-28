@@ -12,7 +12,7 @@ class CategoryController
     public function registerCategory()
     {
         if ($this->categoryModel->registerCategory() == 1) {
-            echo '<script>alert("Successfully registered)</script>';
+            echo '<script>alert("Successfully registered")</script>';
             $this->showCategoryRegisterView();
         } else {
             echo '<script>alert("Category is alredy registered")</script>';
