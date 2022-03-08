@@ -8,6 +8,7 @@ Online store for cleaning and protection articles
 - MySQL
 - JQuery
 - Bootstrap 5
+- MVC - Architectural Pattern
 
 ## Contributing
 
